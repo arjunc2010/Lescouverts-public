@@ -1,0 +1,85 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/homepage-design.css') }}" type="text/css" />
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/restaurant-homepage.css') }}" type="text/css" />
+        {% endblock %}
+
+
+		{% block body %}
+            <div class="h-sub-container" style="border-width:2px;width:70%;">
+                <div class="h-list-cell">
+                    <p>
+                        <span class="h-list-cell-data-name" > {{ shop.name }} </span><br>
+                        <span class="h-list-cell-data-address" >{{ shop.road }}, {{ shop.city }}</span><br>
+                        <span class="h-list-cell-data-address" >{{ shop.country }}</span><br>
+                        <span class="h-list-cell-data-address" >{{ shop.pincode }}</span><br>
+                    </p>
+                </div>
+            </div>
+
+
+
+
+            <div id="mainOption-container">
+
+                <div class="mainOption">
+                    <img src="{{ asset('bundles/LesCouverts/images/mainOption.png') }}" class="mainOption-photo" onmouseover="mainOptionHover(0)" >
+                    {# <a href="http://localhost/lescouverts/restoModule/index.php?controller=pjAdmin&action=login" class="mainOption-popup"> #}
+                    <a href="{{ path('shop_my_offers') }}" class="mainOption-popup">
+                        {#<a href="#" class="mainOption-popup">#}
+                        <span class="mainOption-popup-button" > With a click of a button  </span>
+                    </a>
+                    <h4 class="mainOption-description">Manage my Offers </h4>
+                </div>
+
+                <div class="mainOption">
+                    <img src="{{ asset('bundles/LesCouverts/images/mainOption.png') }}" class="mainOption-photo" onmouseover="mainOptionHover(1)" >
+                    <a href="{{ path('shop_my_information') }}" class="mainOption-popup">
+                        <span class="mainOption-popup-button" > About your Shop </span>
+                    </a>
+                    <h4 class="mainOption-description">Manage my Information</h4>
+                </div>
+
+                <div class="mainOption">
+                    <img src="{{ asset('bundles/LesCouverts/images/mainOption.png') }}" class="mainOption-photo" onmouseover="mainOptionHover(2)" >
+                    <a href="" class="mainOption-popup">
+                        <span class="mainOption-popup-button" >  </span>
+                    </a>
+                    <h4 class="mainOption-description">Booking Statistics</h4>
+                </div>
+
+
+            </div>
+
+
+
+            <div id="mainOption-container">
+
+
+                <div class="mainOption">
+                    <img src="{{ asset('bundles/LesCouverts/images/mainOption.png') }}" class="mainOption-photo" onmouseover="mainOptionHover(3)" >
+                    <a href="#" class="mainOption-popup">
+                        <span class="mainOption-popup-button" >We shall reply ASAP </span>
+                    </a>
+                    <h4 class="mainOption-description">Contact US</h4>
+                </div>
+            </div>
+
+
+
+
+
+
+            {% javascripts '@LesCouvertsBundle/Resources/public/js/homepage.js' %}
+            <script src=" {{ asset_url }} " type="text/javascript"> </script>
+            {% endjavascripts %}
+
+            <script src="{{ asset('bundles/LesCouverts/js/jquery-2.1.1.min.js') }}" ></script>
+
+
+        {% endblock %}

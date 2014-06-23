@@ -1,0 +1,184 @@
+
+	{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+		     	{{ parent( )}}
+ 				<link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/homepage-design.css') }}" type="text/css" />
+ 			{% endblock %}
+
+
+		{% block body %}
+            {#<style>#}
+                {##gallery-container{#}
+                    {#width: 100%;#}
+                    {#border-style: dashed;#}
+                    {#min-height: 200px;#}
+                {#}#}
+            {#</style>#}
+
+            {#<div id="gallery-container" >#}
+                {% include 'LesCouvertsBundle:Couverts:Gallery/gallery.html.twig' %}
+            {#</div>#}
+
+
+
+                <div class="mainOption-container">
+
+								<div class="mainOption">
+									<img src="{{ asset('bundles/LesCouverts/images/mainOption.png') }}" class="mainOption-photo" onmouseover="mainOptionHover(0)" >
+											<a href="{{ path('booking_a_table') }}" class="mainOption-popup">
+														<span class="mainOption-popup-button" > Booking </span>
+											</a>
+						  			<h4 class="mainOption-description">Booking a table online</h4>
+								</div>
+									<div class="mainOption">
+										<img src="{{ asset('bundles/LesCouverts/images/mainOption.png') }}" class="mainOption-photo" onmouseover="mainOptionHover(1)" >
+												<a href="#" class="mainOption-popup">
+														<span class="mainOption-popup-button" > Modify </span>
+												</a>
+							  			<h4 class="mainOption-description">Modify my reservation</h4>
+									</div>
+										<div class="mainOption">
+												<img src="{{ asset('bundles/LesCouverts/images/mainOption.png') }}" class="mainOption-photo" onmouseover="mainOptionHover(2)" >
+														<a href="#" class="mainOption-popup">
+																	<span class="mainOption-popup-button" > Cancel </span>
+														</a>
+									  			<h4 class="mainOption-description">Cancel my reservation</h4>
+										</div>
+
+						</div>
+
+
+						<div class="mainOption-container">
+
+								<div class="mainOption">
+										<img src="{{ asset('bundles/LesCouverts/images/mainOption.png') }}" class="mainOption-photo" onmouseover="mainOptionHover(3)" >
+													<a href="{{ path('party_calendar') }}" class="mainOption-popup">
+															<span class="mainOption-popup-button" > Party! </span>
+													</a>
+									  			<h4 class="mainOption-description">Party Calendar</h4>
+								</div>
+
+                                <div class="mainOption">
+                                    <img src="{{ asset('bundles/LesCouverts/images/mainOption.png') }}" class="mainOption-photo" onmouseover="mainOptionHover(4)" >
+                                    <a href="{{ path('featured') }}" class="mainOption-popup">
+                                        <span class="mainOption-popup-button" > Competition Begins! </span>
+                                    </a>
+                                    <h4 class="mainOption-description">Featured Restaurant</h4>
+                                </div>
+
+                                <div class="mainOption">
+                                    <img src="{{ asset('bundles/LesCouverts/images/mainOption.png') }}" class="mainOption-photo" onmouseover="mainOptionHover(5)" >
+                                    <a href="#" class="mainOption-popup">
+                                        <span class="mainOption-popup-button" > Team lescouverts </span>
+                                    </a>
+                                    <h4 class="mainOption-description">Who are we?</h4>
+                                </div>
+
+						</div>
+
+
+						<div class="mainOption-container">
+
+
+										<div class="mainOption">
+												<img src="{{ asset('bundles/LesCouverts/images/mainOption.png') }}" class="mainOption-photo" onmouseover="mainOptionHover(6)" >
+														<a href="#" class="mainOption-popup">
+																	<span class="mainOption-popup-button" > We shall reply ASAP </span>
+														</a>
+									  			<h4 class="mainOption-description">Contact Us</h4>
+										</div>
+
+                                            <div class="mainOption">
+                                            <img src="{{ asset('bundles/LesCouverts/images/mainOption.png') }}" class="mainOption-photo" onmouseover="mainOptionHover(7)" >
+                                            <a href= {{ path('resto_admin_index') }} class="mainOption-popup">
+                                                {#<a href="http://localhost/lescouverts/restoModule/index.php" class="mainOption-popup">#}
+                                                <span class="mainOption-popup-button" > Manage your Personal Homepage </span>
+                                            </a>
+                                            <h4 class="mainOption-description">Restaurant Login  </h4>
+                                        </div>
+
+						</div>
+
+
+
+						<div id="ourchef-container" >
+							<h1 class="ourchef-font" > Our Chefs </h1>
+
+											<div class="ourchef-chef-container"			 onclick="viewChef(0)">
+													<div class="chef-photo-container">
+														<img src="{{ asset('bundles/LesCouverts/images/chefs/1.png') }}" class="chef-photo" />
+													</div>
+													<div class="ourchef-chef-sub-container">
+															<span class="chef-name-font" > Harry Potter </span></br>
+															<span class="chef-resto-font" > Resto of Hogwards </span>
+													</div>
+											</div>
+											<div class="ourchef-chef-container" 		 onclick="viewChef(1)">
+													<div class="chef-photo-container">
+														<img src="{{ asset('bundles/LesCouverts/images/chefs/2.png') }}"  class="chef-photo" />
+													</div>
+													<div class="ourchef-chef-sub-container" >
+															<span class="chef-name-font" > Harry Potter </span></br>
+															<span class="chef-resto-font" > Resto of Hogwards </span>
+													</div>
+											</div>
+											<div class="ourchef-chef-container"			 onclick="viewChef(2)">
+													<div class="chef-photo-container">
+														<img src="{{ asset('bundles/LesCouverts/images/chefs/3.png') }}" class="chef-photo" />
+													</div>
+													<div class="ourchef-chef-sub-container" >
+															<span class="chef-name-font" > Harry Potter </span></br>
+															<span class="chef-resto-font" > Resto of Hogwards </span>
+													</div>
+											</div>
+											<div class="ourchef-chef-container"			 	onclick="viewChef(3)">
+													<div class="chef-photo-container">
+														<img src="{{ asset('bundles/LesCouverts/images/chefs/4.png') }}"  class="chef-photo" />
+													</div>
+													<div class="ourchef-chef-sub-container">
+															<span class="chef-name-font" > Harry Potter </span></br>
+															<span class="chef-resto-font" > Resto of Hogwards </span>
+													</div>
+											</div>
+
+						</div>
+ 
+
+
+						<div id="work-together-container">
+							 <span id="work-together-font" > LET'S WORK TOGETHER </span></br>
+								 <span id="work-together-sub-font" > Got an interesting project and would like to work on it with us? </span></br>
+									 <button id="work-together-button"> GET IN TOUCH </button>
+						</div>
+
+
+					{% javascripts '@LesCouvertsBundle/Resources/public/js/homepage.js' %}
+					<script src=" {{ asset_url }} " type="text/javascript"> </script>
+				{% endjavascripts %}
+
+            <script src="{{ asset('bundles/LesCouverts/js/jquery-2.1.1.min.js') }}" ></script>
+
+            <script>
+
+//                $(document).ready(function(){
+//                    $(window).scroll(function(){
+//                        if ($(this).scrollTop() > 300) {
+//                            $('.mainOption-container').css('display','block');
+//                            $('.mainOption').animate({
+//                                width: "299px",
+//                                height: "287px"
+//                            },500);
+//
+//                        } else {
+////                            $('.mainOption').fadeOut();
+//                        }
+//                    });
+//
+//                });
+
+            </script>
+
+	  	{% endblock %}

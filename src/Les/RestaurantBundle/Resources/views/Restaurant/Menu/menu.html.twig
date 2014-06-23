@@ -1,0 +1,64 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/resto-account.css') }}" type="text/css" />
+            <link rel="stylesheet" href="{{ asset('bundles/support-files/css/blueimp-gallery.min.css') }}">
+        {% endblock %}
+
+
+
+		{% block body %}
+            <div id="blueimp-gallery" class="blueimp-gallery">
+                <div class="slides"></div>
+                <h3 class="title"></h3>
+                <a class="prev">‹</a>
+                <a class="next">›</a>
+                <a class="close">×</a>
+                <a class="play-pause"></a>
+                <ol class="indicator"></ol>
+            </div>
+
+
+
+
+
+            <div>
+
+                <div id="image-links">
+                    {% set i = 0 %}
+                      {% for image in images %}
+                            <div class="menu-container" >
+                                <a href="{{ asset(image) }}" title="{{ i }}" >
+                                    <img class="img-type" src="{{ asset(image) }}" alt="{{ i }}" />
+                                </a>
+                                    <span> Lunch Menu  </span>
+                            </div>
+                          {% set i = i +1  %}
+                      {% endfor  %}
+                 </div>
+
+
+            </div>
+
+
+
+
+
+
+            <script src="{{ asset('bundles/LesCouverts/js/jquery-2.1.1.min.js') }}" ></script>
+            <script src="{{ asset('bundles/support-files/js/blueimp-gallery.min.js') }}" ></script>
+            <script>
+                document.getElementById('image-links').onclick = function (event) {
+                    event = event || window.event;
+                    var target = event.target || event.srcElement,
+                            link = target.src ? target.parentNode : target,
+                            options = {index: link, event: event},
+                            links = this.getElementsByTagName('a');
+                    blueimp.Gallery(links, options);
+                };
+            </script>
+        {% endblock %}

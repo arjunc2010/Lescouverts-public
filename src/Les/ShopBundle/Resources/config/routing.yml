@@ -1,0 +1,16 @@
+les_shop_homepage:
+    pattern:  /
+    defaults: { _controller: LesShopBundle:Shop:index }
+
+shop_my_offers:
+    pattern:  /my_offers
+    defaults: { _controller: LesShopBundle:Shop:myOffers }
+
+shop_my_information:
+    pattern:  /my_information
+    defaults: { _controller: LesShopBundle:Shop:myInformation }
+
+
+offer_focus:
+    pattern:  /my_offers/modify/{id}
+    defaults: { _controller: LesShopBundle:Shop:focus }

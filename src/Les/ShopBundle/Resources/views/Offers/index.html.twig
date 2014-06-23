@@ -1,0 +1,152 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/user-perspective.css') }}" type="text/css" />
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/virtual-market.css') }}" type="text/css" />
+        {% endblock %}
+
+
+		{% block body %}
+            <style>
+                .img-modify{
+                    position: relative;
+                    top: 7px;
+                    cursor: pointer;
+                }
+                .img-close{
+                    cursor: pointer;
+                }
+
+            </style>
+
+
+
+
+
+
+            <div class="v-list-container">
+
+                {% for product in products %}
+                  {#  <a href="{{ path('virtual_market_focus', {'id' : product.id}) }}">  #}
+                        <div class="v-list-cell" u="{{ product.id }}">
+                            <a href="{{ path('offer_focus', {'id' : product.id}) }}" >
+                              <img class="img-modify" src="{{ asset('bundles/LesCouverts/images/modify.png') }}" />
+                            </a>
+                            <img class="img-close"  src="{{ asset('bundles/LesCouverts/images/close.png') }}" />
+
+                            <img class="v-list-cell-left" src="{{ asset('bundles/VirtualMarket/images/beef.png') }}">
+
+                            <table class="v-list-cell-center">
+                                <tr>
+                                    <td class="product-label">
+                                        <label> Name of Product :</label>
+                                    </td>
+                                    <td class="product-value">
+                                        <span> {{ product.name }}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="product-label">
+                                        <label> Location :</label>
+                                    </td>
+                                    <td class="product-value">
+                                        <span>{{ product.country }}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="product-label">
+                                        <label> Validity :</label>
+                                    </td>
+                                    <td class="product-value">
+                                        <span>{{ product.validFrom|date('m-d-Y')  }} - till - {{ product.validTill|date('d-m-Y') }}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="product-label">
+                                        <label> Price :</label>
+                                    </td>
+                                    <td class="product-value">
+                                        <span>{{ product.price }} euros</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="product-label">
+                                        <label> Discounted Price : </label>
+                                    </td>
+                                    <td class="product-value">
+                                                            <span style="
+                                                            {% if product.discount <= 30 %}
+                                                                    color:rgb(24,126,55);
+                                                            {% elseif product.discount <= 60 %}
+                                                                    color:rgb(213,106,0);
+                                                            {% else %}
+                                                                    color:rgb(183,15,23);
+                                                            {% endif %}
+                                                                    ">
+                                                                {{ product.discountPrice }} euros</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="product-label">
+                                        <label> Description : </label>
+                                    </td>
+                                    <td class="product-value">
+                                        <span> {{ product.description }}</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="v-list-cell-right">
+                                <div class="v-list-cell-discount" style="
+                                {% if product.discount <= 30 %}
+                                        background-color:rgb(24,126,55);
+                                {% elseif product.discount <= 60 %}
+                                        background-color:rgb(213,106,0);
+                                {% else %}
+                                        background-color:rgb(183,15,23);
+                                {% endif %}
+                                        " >
+                                    <span class="product-discount" > {{ product.discount }}%<br>Discount </span>
+                                </div>
+                            </div>
+                        </div>
+                {#      </a>   #}
+                {% endfor %}
+            </div>
+
+
+            <script src="{{ asset('bundles/LesCouverts/js/jquery-2.1.1.min.js') }}" ></script>
+            <script src="{{ asset('bundles/LesCouverts/js/virtual-market.js') }}" type="text/javascript"> </script>
+            <script>
+                $('.img-close').click(function(){
+                    var status;
+                    var parent = $(this).parent();
+                    var filepath = $(this).attr('u');
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ path('shop_my_offers') }}",
+                        data: {
+                            action: 'delete',
+                            id: parent.attr('u')
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            if( response.status == true){
+                                alert('File has been deleted');
+                                parent.slideUp();
+                            }else{
+                                alert('Error in deleting file');
+                            }
+                            console.log( response );
+                        }
+                    });
+                });
+
+
+            </script>
+
+
+        {% endblock %}

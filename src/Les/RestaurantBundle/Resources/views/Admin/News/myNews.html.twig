@@ -1,0 +1,151 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/resto-account.css') }}" type="text/css" />
+            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/support-files/css/bootstrap.css')}}"  />
+
+        {% endblock %}
+
+
+
+		{% block body %}
+<style>
+.img-close{
+    cursor: pointer;
+}
+.img-modify{
+    cursor: pointer;
+}
+
+</style>
+
+
+      {% set i = 0 %}
+        <div class="news-container">
+            {% for new in news %}
+                    <div class="news-cell" u="{{ new.id }}" target="{{ i }}">
+                           <!-- here have to add logic for image decider -->
+                        {% if new.category == "starter" %}
+                              <img class="news-cell-left"  src="{{ asset('bundles/LesCouverts/images/news/starter.png') }}">
+                        {% elseif new.category == "main" %}
+                              <img class="news-cell-left"  src="{{ asset('bundles/LesCouverts/images/news/main.png') }}">
+                        {% elseif new.category == "dessert" %}
+                              <img class="news-cell-left"  src="{{ asset('bundles/LesCouverts/images/news/dessert.png') }}">
+                        {% endif %}
+                        <img class="img-close"  src="{{ asset('bundles/LesCouverts/images/close.png') }}" />
+                        <img class="img-modify" src="{{ asset('bundles/LesCouverts/images/modify.png') }}" />
+
+                        <div class="news-cell-center">
+                            <span class="news-title" id="title-{{ i }}">{{ new.text }}</span><br>
+                            <span class="news-date">Since :  <strong>  {{ new.dateCreated|date('m-d-Y') }} </strong></span>
+                        </div>
+                    </div>
+                {% set i = i + 1 %}
+            {% endfor %}
+         </div>
+
+            <!-- Modal -->
+            <div id="myModal" class="modal hide fade" target="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3 id="myModalLabel">Update Entry</h3>
+                </div>
+                <div class="modal-body" id="form-container">
+                    <div>
+                          {% include 'LesRestaurantBundle:Admin:News/Blocks/newsUploadForm.html.twig' %}
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button id="form-save" class="btn btn-primary">Save</button>
+                </div>
+                <div id="form-info" target="" row="" ></div>
+            </div>
+
+
+<script src="{{ asset('bundles/LesCouverts/js/jquery-2.1.1.min.js') }}" ></script>
+<script src="{{ asset('bundles/support-files/js/bootstrap.min.js')}}" > </script>
+ <script>
+ //TARGET for getting text
+     $('.img-modify').click(function(){
+         var parent = $(this).parent();
+         var target = parent.attr('target');
+         var title = $('#title-'+target);
+         $('#form-text').val( title.text() );
+         $('#form-info').attr({
+                'target': parent.attr('target'),
+                'row':parent.attr('u')});
+         $('#myModal').modal({
+             show: true
+         });
+     });
+    $('#form-save').click(function(){
+        $('#myModal').modal('hide');
+        var text = $('#form-text');
+        var id = $('#form-info').attr('row');
+        var title =   $('#news-container').find("[target='"+id +"' ]")
+        console.log( id + text.val() + title.length );
+        $.ajax({
+            type: "POST",
+            url: "{{ path('restaurant_my_news') }}",
+            data: {
+                action: 'update',
+                id: id,
+                title: text.val()
+            },
+            dataType: "json",
+            success: function(response) {
+                console.log( response );
+            }
+        });
+
+    });
+
+     $('.img-close').click(function(){
+         console.log('start');
+         var parent = $(this).parent();
+         var id = parent.attr('u');
+         $.ajax({
+             type: "POST",
+             url: "{{ path('restaurant_my_news') }}",
+             data: {
+                 action: 'delete',
+                 id: id
+             },
+             dataType:'json',
+             success: function(response){
+                 console.log(response);
+                 parent.slideUp();
+             }
+         });
+         console.log('end');
+     });
+
+     $('.img-save-modification').click(function(){
+         console.log('start');
+         var parent = $(this).parent();
+         var id = parent.attr('u');
+         $.ajax({
+             type: "POST",
+             url: "{{ path('restaurant_my_news') }}",
+             data: {
+                 action: 'modify',
+                 id: id
+             },
+             dataType:'json',
+             success: function(response){
+                 console.log(response);
+                 parent.slideUp();
+             }
+         });
+         console.log('end');
+     });
+
+
+ </script>
+        {% endblock %}

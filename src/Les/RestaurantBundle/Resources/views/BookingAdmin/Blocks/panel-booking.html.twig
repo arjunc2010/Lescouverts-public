@@ -1,0 +1,262 @@
+<link rel="stylesheet" href="{{ asset('bundles/support-files/css/idangerous.swiper.css') }}">
+<style>
+    /* Demo Styles */
+    body {
+        margin: 0;
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    .tabs {
+        width: 900px;
+        margin: 0 auto;
+    }
+    .tabs a {
+        display: block;
+        float: left;
+        width: 223px;
+        color: #333;
+        text-align: center;
+        border-radius: 5px 5px 0 0;
+        border: 1px solid #ccc;
+        background: #fff;
+        line-height: 40px;
+        font-size: 17px;
+        font-style: italic;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    .tabs a.active {
+        color: #fff;
+        background: #585858;
+        border-bottom: 1px solid #000;
+    }
+    .swiper-container {
+
+        height: 550px;
+        border-radius: 0 0 5px 5px;
+        border: 1px solid #ccc;
+        /*width: 640px;*/
+        width: 900px;
+        border-top: 0;
+    }
+    .swiper-slide {
+        height: 250px;
+        width: 640px;
+        background: none;
+        /*color: #fff;*/
+    }
+    .content-slide {
+        padding: 40px;
+    }
+</style>
+
+<style>
+    .filter-container{
+        /*border-style: dashed;*/
+        /*width: 250px;*/
+        /*float: left;*/
+    }
+
+    .filter-container input{
+        height: 30px;
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+        text-align: center;
+    }
+
+    .filter-container input[type="submit"]{
+        width: 90px;
+    }
+
+
+    #table-booking{
+        border-style: solid;
+        border-width: 1px;
+    }
+    #table-booking th{
+        /*width: 140px;*/
+        border-bottom-style: solid;
+        border-width: 1px;
+    }
+
+    #table-booking a  {
+        color: black;
+        text-decoration: none;
+    }
+    #table-booking a div{
+        /*border-style: dashed;*/
+        width: 75%;
+        text-align: right;
+    }
+
+    #table-booking a div img {
+        width:13px;
+        position: relative;
+        top: 2px;
+    }
+
+    #table-booking tr:hover{
+        background-color: #F2F2F2;
+        border-color:#F2F2F2;
+    }
+
+    #table-booking .table-headers:hover{
+        background: none;
+    }
+
+
+    #table-booking td {
+        font-size: 17px;
+    }
+    #ui-datepicker-div{
+        font-size: 1em;
+    }
+
+    .status{
+        font-weight: bold;
+    }
+    .success{
+        color: #187E37;
+    }
+    .error{
+        color: #B70F17;
+    }
+    .pending{
+        color: #D56A00;
+    }
+
+
+</style>
+<div class="tabs"> <a href="#" class="active">Schedule</a> <a href="#" class="">Booking List</a> <a href="#">Find</a> <a href="#">Print</a> </div>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div class="content-slide">
+                <!-- Tab Content START -->
+                <form class="filter-container" method="post">
+                    <div>
+                        <input type="text" name="filter-date" id="filter-date"/>
+                        <input type="submit" value="filter" />
+                    </div>
+                </form>
+
+                <!-- Tab Content END -->
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="content-slide">
+                <!-- Tab Content START -->
+
+                <table id="table-booking" >
+                    <tr class="table-headers">
+                        <th style="width:160px;">From Date/Time</th>
+                        <th style="width:185px;">Name</th>
+                        <th style="width:220px;">Email Address</th>
+                        <th style="width:100px;">Status</th>
+                        <th style="width:135px;"></th>
+                    </tr>
+
+                    <tr>
+                        <td>30/05/2014, &thinsp; 18:00 </td>
+                        <td>Test Subject </td>
+                        <td>test@testmail.com</td>
+                        <td><span class="status success"> confirmed </span></td>
+                        <td>
+                            <a href="#">
+                                <div>
+                                    <img src="{{ asset('bundles/support-files/images/error.png') }}" class="img-delete" /> delete
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>30/05/2014, &thinsp; 18:00 </td>
+                        <td>Test Subject </td>
+                        <td>test@testmail.com</td>
+                        <td><span class="status pending"> pending </span></td>
+                        <td>
+                            <a href="#">
+                                <div>
+                                    <img src="{{ asset('bundles/support-files/images/error.png') }}" class="img-delete" /> delete
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>30/05/2014, &thinsp; 18:00 </td>
+                        <td>Test Subject </td>
+                        <td>test@testmail.com</td>
+                        <td><span class="status error"> declined </span></td>
+                        <td>
+                            <a href="#">
+                                <div>
+                                    <img src="{{ asset('bundles/support-files/images/error.png') }}" class="img-delete" /> delete
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+
+
+                </table>
+
+                <!-- Tab Content END -->
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="content-slide">
+                <h2>Tab 3</h2>
+                <!-- Tab Content START -->
+                <!-- Tab Content END -->
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="content-slide">
+                <h2>Tab 4</h2>
+                <!-- Tab Content START -->
+                <!-- Tab Content END -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="{{ asset('bundles/support-files/js/idangerous.swiper-2.1.min.js') }}"></script>
+
+<script src="{{ asset('bundles/support-files/js/jquery-1.10.1.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('bundles/ui/base/jquery.ui.all.css') }}">
+<script src="{{ asset('bundles/ui/jquery-1.10.2.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.core.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.widget.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.datepicker.js') }}"></script>
+<script>
+    var tabsSwiper = new Swiper('.swiper-container',{
+        onlyExternal : true,
+        speed:500,
+        onSlideChangeStart: function(){
+            $(".tabs .active").removeClass('active')
+            $(".tabs a").eq(tabsSwiper.activeIndex).addClass('active')
+        }
+    });
+    $(".tabs a").on('touchstart mousedown',function(e){
+        e.preventDefault()
+        $(".tabs .active").removeClass('active')
+        $(this).addClass('active')
+        tabsSwiper.swipeTo( $(this).index() )
+    });
+    $(".tabs a").click(function(e){
+        e.preventDefault()
+    });
+
+    $(function() {
+        $( "#filter-date" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 3,
+            onClose: function( selectedDate ) {
+                $( "#to" ).datepicker( "option", "minDate", selectedDate );
+            }
+        });
+    });
+</script>

@@ -1,0 +1,42 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/lescouverts/css/user-perspective.css') }}" type="text/css" />
+        {% endblock %}
+
+
+		{% block body %}
+            <style>
+                .list-rank{
+                    position:absolute;
+                    right:40px;
+                    top: 50px;
+                }
+
+            </style>
+            <div id="main-list-container">
+          {% set i = 1 %}
+            {% for resto in restos %}
+                <a href="{{ path('resto_homepage', {'id' : resto.id}) }}" >
+                            <div class="list-container">
+                                <div class="list-cell" >
+                                    <span class="list-cell-data-name" > {{ resto.name }}</span><br>
+                                    <span class="list-cell-data-address" > {{ resto.address }} </span><br>
+                                    <span class="list-cell-data-type" > {{ resto.cuisine  }} </span><br>
+                                </div>
+                                <span class="list-rank">
+                                    {% if i < 3 %}
+                                        Rank :  {{ i }}
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </a>
+                {% set i = i + 1 %}
+            {% endfor %}
+                </div>
+
+        {% endblock %}

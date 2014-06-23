@@ -1,0 +1,532 @@
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/restaurant-homepage.css') }}" type="text/css" />
+            <link rel="stylesheet" href="{{ asset('bundles/support-files/css/blueimp-gallery.min.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/support-files/css/bootstrap.css')}}"  />
+            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/support-files/css/examples.css')}}"  />
+
+        {% endblock %}
+
+
+		{% block body %}
+
+
+                    <div id="container">
+
+                                <div id="h-container">
+                                <div id="h-gallery" style="">
+
+
+                                    <div id="blueimp-gallery-carousel" class="blueimp-gallery blueimp-gallery-carousel">
+                                        <div class="slides"></div>
+                                        <h3 class="title"></h3>
+                                        <a class="prev">‹</a>
+                                        <a class="next">›</a>
+                                        <a class="play-pause"></a>
+                                        <ol class="indicator"></ol>
+                                    </div>
+
+                                   <div id="image-links" style="display: none" >
+
+                                    {% for image in images %}
+
+                                                    <a href="{{ asset(image) }}" >
+                                                        <img class="img-type" src="{{ asset(image) }}" />
+                                                    </a>
+
+                                    {% endfor %}
+                                    </div>
+
+
+                                    <div style="width:100%;height:60px;float:left;position:relative">
+                                        <form>
+                                            <input type="submit" name="reserve" value="Reserve" />
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="h-sub-container" style="height:94px;">
+                                    <div class="h-list-cell">
+                                        <span class="h-list-cell-data-name" > {{ details.name }} </span><br>
+                                        <span class="h-list-cell-data-address" >{{ details.address }}</span><br>
+                                        <span class="h-list-cell-data-type" > {{ details.cuisine }} </span><br>
+                                    </div>
+                                </div>
+
+                                <div class="h-sub-container" style="height:130px;">
+                                    <div class="h-list-cell">
+                                        <span class="h-list-cell-data-name" > Special Offers </span><br>
+                                        <span class="h-list-cell-data-address" > {{ details.special1 }}  </span><br>
+                                        <span class="h-list-cell-data-address" > {{ details.special2 }}   </span><br>
+                                        <span class="h-list-cell-data-address" > {{ details.special3 }}  </span><br>
+                                    </div>
+                                </div>
+                                <div class="h-sub-container" style="height:70px;">
+                                    <div class="h-list-cell">
+                                        <span class="h-list-cell-data-menu" > Menu Prices : {{ details.menuPriceMin }} euros - {{ details.menuPriceMax }} euros </span>
+                                        <span class="h-list-cell-data-menu-content">   </span><br>
+                                        <span class="h-list-cell-data-menu" > Meal Prices :  {{ details.mealPriceMin }} euros - {{ details.mealPriceMax }} euros </span>
+                                        <span class="h-list-cell-data-menu-content">  </span><br>
+
+                                    </div>
+                                </div>
+
+                         {% if (details.paymentVisa == 1) or (details.paymentMaster == 1) or (details.paymentTicket == 1) %}
+                                <div class="h-sub-container" style="height:120px;">
+                                    <div class="h-list-cell">
+                                        <span class="h-list-cell-data-name" > Payment Methods </span><br>
+
+                                            {% if details.paymentVisa == 1   %}
+                                                <span class="h-list-cell-data-type" > Visa</span><br>
+                                            {% endif %}
+
+                                            {% if details.paymentMaster == 1 %}
+                                                <span class="h-list-cell-data-type" > Master </span><br>
+
+                                            {% endif %}
+
+                                            {% if details.paymentTicket == 1 %}
+                                                <span class="h-list-cell-data-type" > Restaurant Vouchers </span><br>
+                                            {% endif %}
+
+                                    </div>
+                                </div>
+                         {% endif %}
+                                <div class="h-sub-container" style="height:195px;border-style:none;">
+                                    <div class="h-list-cell">
+                                        <span class="h-list-cell-data-name" > Opening days </span><br>
+        <style>
+            .h-sub-container p{
+                margin-top: 10px;
+                display: inline-block;
+            }
+
+                .h-sub-container table{
+                    text-align: center;
+                    display: inline-block;
+                    color: #A5A5A5;
+                    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                }
+
+                    .h-sub-container .schedule-day-container{
+                        width: 100px;
+                        text-align: right;
+                    }
+
+                            .h-sub-container td{
+                                width: 360px;
+                            }
+                                    .schedule-day{
+                                        color:grey;
+                                        font-weight: bold;
+                                        font-size: 15px;
+                                    }
+                                    .schedule-alert{
+                                        color:red;
+                                    }
+
+        </style>
+      <p>
+        <table>
+            <tr>
+                <td class="schedule-day-container">
+                                          <span class="schedule-day"> Monday : </span>
+                </td>
+                <td>
+                                                        {% if details.mon1 != 0 %}
+                                                            breakfast -
+                                                         {% else %}
+                                                             <span class="schedule-alert"> breakfast Closed - </span>
+                                                          {% endif %}
+                                                            {% if details.mon2 != 0 %}
+                                                                Lunch -
+                                                            {% else %}
+                                                                <span class="schedule-alert"> Lunch Closed - </span>
+                                                            {% endif %}
+                                                                {% if details.mon3 != 0 %}
+                                                                    Dinner
+                                                                {% else %}
+                                                                    <span class="schedule-alert"> Dinner Closed </span>
+                                                                {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td class="schedule-day-container">
+                                            <span class="schedule-day"> Tuesday: </span>
+                </td>
+                <td>
+                                            {% if details.tue1 != 0 %}
+                                                breakfast -
+                                            {% else %}
+                                                <span class="schedule-alert"> breakfast Closed - </span>
+                                            {% endif %}
+                                                {% if details.tue2 != 0 %}
+                                                    Lunch -
+                                                {% else %}
+                                                    <span class="schedule-alert"> Lunch Closed - </span>
+                                                {% endif %}
+                                                    {% if details.tue3 != 0 %}
+                                                        Dinner
+                                                    {% else %}
+                                                        <span class="schedule-alert"> Dinner Closed </span>
+                                                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td class="schedule-day-container">
+                                            <span class="schedule-day"> Wednesday : </span>
+                </td>
+                <td>
+                                            {% if details.wed1 != 0 %}
+                                                breakfast -
+                                            {% else %}
+                                                <span class="schedule-alert"> breakfast Closed - </span>
+                                            {% endif %}
+                                                {% if details.wed2 != 0 %}
+                                                    Lunch -
+                                                {% else %}
+                                                    <span class="schedule-alert"> Lunch Closed - </span>
+                                                {% endif %}
+                                                    {% if details.wed3 != 0 %}
+                                                        Dinner
+                                                    {% else %}
+                                                        <span class="schedule-alert"> Dinner Closed </span>
+                                                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td class="schedule-day-container">
+                                            <span class="schedule-day"> Thursday : </span>
+                </td>
+                <td>
+                                            {% if details.thur1 != 0 %}
+                                                breakfast -
+                                            {% else %}
+                                                <span class="schedule-alert"> breakfast Closed - </span>
+                                            {% endif %}
+                                                {% if details.thur2 != 0 %}
+                                                    Lunch -
+                                                {% else %}
+                                                    <span class="schedule-alert"> Lunch Closed - </span>
+                                                {% endif %}
+                                                    {% if details.thur3 != 0 %}
+                                                        Dinner
+                                                    {% else %}
+                                                        <span class="schedule-alert"> Dinner Closed </span>
+                                                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td class="schedule-day-container">
+                                            <span class="schedule-day"> Friday : </span>
+                </td>
+                <td>
+                                            {% if details.fri1 != 0 %}
+                                                breakfast -
+                                            {% else %}
+                                                <span class="schedule-alert"> breakfast Closed - </span>
+                                            {% endif %}
+                                                {% if details.fri2 != 0 %}
+                                                    Lunch -
+                                                {% else %}
+                                                    <span class="schedule-alert"> Lunch Closed - </span>
+                                                {% endif %}
+                                                    {% if details.fri3 != 0 %}
+                                                        Dinner
+                                                    {% else %}
+                                                        <span class="schedule-alert"> Dinner Closed </span>
+                                                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td class="schedule-day-container">
+                                            <span class="schedule-day"> Saturday : </span>
+                </td>
+                <td>
+                                            {% if details.sat1 != 0 %}
+                                                breakfast -
+                                            {% else %}
+                                                <span class="schedule-alert"> breakfast Closed - </span>
+                                            {% endif %}
+                                                {% if details.sat2 != 0 %}
+                                                    Lunch -
+                                                {% else %}
+                                                    <span class="schedule-alert"> Lunch Closed - </span>
+                                                {% endif %}
+                                                    {% if details.sat3 != 0 %}
+                                                        Dinner
+                                                    {% else %}
+                                                        <span class="schedule-alert"> Dinner Closed </span>
+                                                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td class="schedule-day-container">
+                                            <span class="schedule-day"> Sunday : </span>
+                </td>
+                <td>
+                                            {% if details.sun1 != 0 %}
+                                                breakfast -
+                                            {% else %}
+                                                <span class="schedule-alert"> breakfast Closed - </span>
+                                            {% endif %}
+                                                {% if details.sun2 != 0 %}
+                                                    Lunch -
+                                                {% else %}
+                                                    <span class="schedule-alert"> Lunch Closed - </span>
+                                                {% endif %}
+
+                                                    {% if details.sun3 != 0 %}
+                                                        Dinner
+                                                    {% else %}
+                                                        <span class="schedule-alert"> Dinner Closed </span>
+                                                    {% endif %}
+                </td>
+            </tr>
+           </table>
+         </p>
+
+                                    </div>
+                                </div>
+
+                                <div class="h-sub-container" style="height:45px;">
+                                    <div class="h-list-cell">
+                                        <span class="h-list-cell-data-menu" > Vacation Period :  </span>
+                                        <span class="h-list-cell-data-menu-content"> From {{ details.vacationPeriodStart|date("d M") }} till {{ details.vacationPeriodStart|date("d M") }} </span><br>
+                                    </div>
+                                </div>
+
+                                <div class="h-sub-container" style="height:75px;">
+                                    <div class="h-list-cell">
+                                        <span class="h-list-cell-data-name" > Servicing hours </span><br>
+                                        <span class="h-list-cell-data-address" > {{ details.servicingHourStart|date("H:m") }} till {{ details.servicingHourEnd|date("H:m") }} </span><br>
+                                    </div>
+                                </div>
+
+                                <div class="h-sub-container" style="height:50px;">
+                                    <div class="h-list-cell">
+                                        <span class="h-list-cell-data-name" > Terrace :
+                                                    {% if details.terrace == "1" %}
+                                                        Yes
+                                                    {% else %}
+                                                        No
+                                                     {% endif %}
+                                        </span><br>
+                                    </div>
+                                </div>
+
+                                <div class="h-sub-container" style="height:92px;">
+                                    <div class="h-list-cell">
+                                        <span class="h-list-cell-data-name" > Guides </span><br>
+                                                   {% for guide in details.guides|split('/') %}
+                                                       <span class="h-list-cell-data-address" > {{ guide }}</span><br>
+                                                    {% endfor %}
+                                    </div>
+                                </div>
+
+                                <div class="h-sub-container" style="height:117px;">
+                                    <div class="h-list-cell">
+                                        <span class="h-list-cell-data-name" > Languages Spoken </span><br>
+                                                    {% for lang in details.languages|split('/') %}
+                                                        <span class="h-list-cell-data-address" > {{ lang }}</span><br>
+                                                    {% endfor %}
+                                    </div>
+                                </div>
+
+            {# ---------------------     GOOGLE MAP ----------------------  #}
+                <div class="h-sub-container" style="text-align: center">
+                <div class="row" style="text-align:center;display:inline-block;">
+                    <div class="span11">
+                        <div id="map""></div>
+                    </div>
+                </div>
+
+            {# ---------------------     END GOOGLE MAP    ----------------------  #}
+
+
+
+            <div class="h-sub-container" style="height:260px;">
+                                    <a href="{{ path('menus', {'id' : id}) }}" >
+                                        <div class="h-block-cell">
+                                            <div class="h-block-cell-top">
+                                                <img src="{{ asset( 'bundles/Restaurant/images/menu.png')  }}" />
+                                            </div>
+                                            <div class="h-block-cell-bottom">
+                                                <span> Menu </span>
+                                            </div>
+                                        </div>
+                                     </a>
+                                    <a href="{{ path('events', {'id' : id}) }}" >
+                                        <div class="h-block-cell">
+                                            <div class="h-block-cell-top">
+                                                <img src="{{ asset( 'bundles/Restaurant/images/organise-event.png')  }}" />
+
+                                            </div>
+                                            <div class="h-block-cell-bottom">
+                                                <span> Organised Events </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="{{ path('news', {'id' : id}) }}" >
+                                        <div class="h-block-cell">
+                                            <div class="h-block-cell-top">
+                                                <img src="{{ asset( 'bundles/Restaurant/images/news.png')  }}" />
+
+                                            </div>
+                                            <div class="h-block-cell-bottom">
+                                                <span> News </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="{{ path('similar', {'id' : id}) }}" >
+                                        <div class="h-block-cell">
+                                            <div class="h-block-cell-top">
+                                                <img src="{{ asset( 'bundles/Restaurant/images/similar-restos.png')  }}" />
+                                            </div>
+                                            <div class="h-block-cell-bottom">
+                                                <span> Similar Restaurants </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="h-sub-container" style="height:260px;">
+                                    <a href="{{ path('recommend', {'id' : id}) }}" >
+                                        <div class="h-block-cell">
+                                            <div class="h-block-cell-top">
+                                                <img src="{{ asset( 'bundles/Restaurant/images/recommend.png')  }}" />
+
+                                            </div>
+                                            <div class="h-block-cell-bottom">
+                                                <span> Recommended by <br> 68% of clients </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="{{ path('rating', {'id' : id}) }}" >
+                                    {#<a href="rating/{{ id }}" >#}
+                                        <div class="h-block-cell">
+                                            <div class="h-block-cell-top">
+                                                <img src="{{ asset( 'bundles/Restaurant/images/rate.png')  }}" />
+
+                                            </div>
+                                            <div class="h-block-cell-bottom">
+                                                <span> Average rating of <br> restaurant 7/10 </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                   {# <a href="{{ path('feedback', {'id' : id}) }}" > #}
+                                        <div class="h-block-cell" id="feedback-button">
+                                            <div class="h-block-cell-top">
+                                                <img src="{{ asset( 'bundles/Restaurant/images/feedback.png')  }}" />
+
+                                            </div>
+                                            <div class="h-block-cell-bottom">
+                                                <span> Client Feedback </span>
+                                            </div>
+                                        </div>
+                                    {# </a>#}
+                                </div>
+
+
+                           {%  if comments|length > 0  %}
+                                <div class="h-sub-container" style="border-style:none;">
+                                    <span class="h-list-cell-data-name" > Comments </span><br>
+
+                                    {% for comment in comments %}
+                                        <div class="h-comment-container">
+
+                                                <span class="h-comment-text" > {{ comment.text }} </span><br>
+                                                <span class="h-comment-details"><strong> {{ comment.username }} </strong> </span>
+                                                <span class="h-comment-details"> {{ comment.dateCreated|date("D d-M-Y", "Europe/Paris")  }} </span><br>
+
+                                        </div>
+                                    {% endfor %}
+
+                                </div>
+                          {% endif %}
+
+
+
+
+
+                {# ---------------------     Image Gallery    ----------------------  #}
+                                <div id="myModal" class="modal hide fade" target="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                                        <h3 id="myModalLabel">Client Feedback</h3>
+                                    </div>
+                                    <div class="modal-body" id="form-container">
+
+                                      {% include 'LesRestaurantBundle:Restaurant:Feedback/feedbackPopup.html.twig' %}
+
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                    <div id="form-info" target="" row="" ></div>
+                                </div>
+                {# ---------------------    END image Gallery    ----------------------  #}
+
+
+
+                {# ---------------------     Video Gallery    ----------------------  #}
+                {# ---------------------     END video Gallery    ----------------------  #}
+
+
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+        <script type="text/javascript" src="{{ asset('bundles/support-files/js/gmaps.js') }}"></script>
+        <script src="{{ asset('bundles/LesCouverts/js/jquery-2.1.1.min.js') }}" ></script>
+        <script src="{{ asset('bundles/support-files/js/blueimp-gallery.min.js') }}" ></script>
+        <script src="{{ asset('bundles/support-files/js/bootstrap.min.js')}}" > </script>
+
+
+          <script>
+                blueimp.Gallery(
+                        document.getElementById('image-links').getElementsByTagName('a'),
+                        {
+                            container: '#blueimp-gallery-carousel',
+                            carousel: true
+                        }
+                );
+
+                $('#feedback-button').click(function(){
+                    $('#myModal').modal({
+                        show: true
+                    });
+                });
+
+                $('#feedback_submit').click(function(){
+
+                });
+
+            </script>
+
+            <script type="text/javascript">
+                var map;
+                $(document).ready(function(){
+                    map = new GMaps({
+                        el: '#map',
+                        lat: -12.043333,
+                        lng: -77.028333
+                    });
+                        GMaps.geocode({
+                            address: '{{ details.address }}',
+                            callback: function(results, status){
+                                if(status=='OK'){
+                                    var latlng = results[0].geometry.location;
+                                    map.setCenter(latlng.lat(), latlng.lng());
+                                    map.addMarker({
+                                        lat: latlng.lat(),
+                                        lng: latlng.lng()
+                                    });
+                                }
+                            }
+                        });
+                });
+            </script>
+        {% endblock %}

@@ -1,0 +1,136 @@
+<style>
+    #p-form-container{
+        /*border-style: dashed;*/
+        position: relative;
+        height: 50px;
+        margin-top:20px;
+    }
+
+            #p-form-field-container{
+                width: 13%;
+                position: absolute;
+                bottom: -150px;
+                display: none;
+                margin-left:23%;
+                text-align: center;
+                z-index: 200;
+            }
+
+                        .p-search-field{
+                            /*border-style: dashed;*/
+                            /*border-color: red;*/
+                            display: inline-block;
+
+                        }
+
+            img#p-form-img{
+               width: 60px;
+                float: left;
+                margin-left: 20%;
+                cursor: pointer;
+                z-index: 200;
+            }
+
+
+
+            #p-form-container form input[type='text'],  #search-container select, #search-container option,
+                #party_calendar_organisers{
+                width: 139px;
+                height: 30px;
+                font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                border-color: #D8D8D8;
+                border-style: double;
+                text-align: center;
+            }
+
+                #party_calendar_organisers{
+                            width: 147px;
+                     }
+
+            #p-form-container button[type='submit']{
+                height: 33px;
+                width: 94px;
+                font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                font-weight: bold;
+                font-size: 15px;
+                color: white;
+                border-color: rgb(116,132,255);
+                background-color: rgb(116,132,255);
+                border-style: double;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-left:46px;
+            }
+
+
+    #form-container input[type='text'], #form-container input[type='number']{
+        width: 260px;
+        height: 30px;
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+        border-color: #D8D8D8;
+        border-style: double;
+        text-align: center;
+        margin-top:14px;
+    }
+
+
+
+
+</style>
+
+<link rel="stylesheet" href="{{ asset('bundles/ui/base/jquery.ui.all.css') }}">
+<script src="{{ asset('bundles/ui/jquery-1.10.2.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.core.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.widget.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.datepicker.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('bundles/ui/demos.css') }}">
+<script>
+    $(function() {
+        $( "#party_calendar_from" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 3,
+            onClose: function( selectedDate ) {
+                $( "#to" ).datepicker( "option", "minDate", selectedDate );
+            }
+        });
+        $( "#party_calendar_till" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 3,
+            onClose: function( selectedDate ) {
+                $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+            }
+        });
+    });
+</script>
+
+
+<div id="p-form-container">
+     <img id="p-form-img" src="{{ asset('bundles/support-files/images/calendar.jpg') }}" />
+      <div id="p-form-field-container">
+                {{ form_start(form) }}
+                        <div class="p-search-field">
+                            {{ form_widget(form.from) }}
+                        </div>
+                        <div class="p-search-field">
+                            {{ form_widget(form.till) }}
+                        </div>
+                        <div class="p-search-field">
+                            {{ form_widget(form.organisers) }}
+                        </div>
+
+                        <div class="p-search-field">
+                            {{ form_row(form.search) }}
+                        </div>
+                {{ form_end(form) }}
+        </div>
+ </div>
+
+
+<script type="text/javascript">
+    $('#p-form-img').click(function(){
+        $('#p-form-field-container').slideToggle();
+    });
+
+</script>

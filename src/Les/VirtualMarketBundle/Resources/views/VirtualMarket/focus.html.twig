@@ -1,0 +1,168 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{  parent( ) }}
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/user-perspective.css') }}" type="text/css" />
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/virtual-market.css') }}" type="text/css" />
+        {% endblock %}
+
+
+		{% block body %}
+            {% for detail in product %}
+                                    <div id="v-focus-container">
+                                        <div style="width:100%;float:left">
+                                            <img class="v-focus-photo" src="{{ asset('bundles/VirtualMarket/images/beef.png') }}" />
+                                        </div>
+
+                                                <table class="v-focus-details">
+                                            <tr>
+                                                <td class="product-label">
+                                                    <label> Name of Product :</label>
+                                                </td>
+                                                <td class="product-value">
+                                                    <span>{{ detail.name }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="product-label">
+                                                    <label> Location :</label>
+                                                </td>
+                                                <td class="product-value">
+                                                    <span>{{ detail.country }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="product-label">
+                                                    <label> Validity :</label>
+                                                </td>
+                                                <td class="product-value">
+                                                    <span>{{  detail.validFrom|date('d-m-Y')  }} - till - {{ detail.validTill|date('d-m-Y') }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="product-label">
+                                                    <label> Price :</label>
+                                                </td>
+                                                <td class="product-value">
+                                                    <span>{{ detail.price }} euros</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="product-label">
+                                                    <label> Discounted Price : </label>
+                                                </td>
+                                                <td class="product-value">
+                                                    <span style="
+                                                    {% if detail.discount <= 30 %}
+                                                            color:rgb(24,126,55);
+                                                    {% elseif detail.discount <= 60 %}
+                                                            color:rgb(213,106,0);
+                                                    {% else %}
+                                                            color:rgb(183,15,23);
+                                                    {% endif %}
+                                                            ">
+                                                                {{ detail.discountPrice }} euros</spa
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="product-label">
+                                                    <label> Description : </label>
+                                                </td>
+                                                <td class="product-value">
+                                                            <span> {{ detail.description }} </span>
+                                                </td>
+                                            </tr>
+                            {% for detailShop in shop %}
+                                            <tr>
+                                                <td class="product-label" >
+                                                    <label> Name of Store : </label>
+                                                </td>
+                                                <td class="product-value">
+                                                    <span> {{ detailShop.name }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="product-label">
+                                                    <label> Email : </label>
+                                                </td>
+                                                <td class="product-value">
+                                                    <span>{{ detailShop.email }} </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="product-label">
+                                                    <label> Phone : </label>
+                                                </td>
+                                                <td class="product-value">
+                                                    <span> {{ detailShop.phone }} <img src="{{ asset('bundles/VirtualMarket/images/phone.png') }}" style="width:30px;" /></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="product-label">
+                                                    <label> Fax : </label>
+                                                </td>
+                                                <td class="product-value">
+                                                    <span> {{ detailShop.fax }} </span>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="product-label">
+                                                    <label> Address : </label>
+                                                </td>
+                                                <td class="product-value">
+                                                            <span> {{ detailShop.road }} <br>
+                                                                {{ detailShop.city }}<br>
+                                                                {{ detailShop.country }}<br>
+                                                                {{ detailShop.pincode }}  </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="product-label">
+                                                    <label> Opening Days: </label>
+                                                </td>
+                                                <td class="product-value">
+                                                    <p>
+                                                        Monday : <span style="color:red" > Closed </span> <br>
+                                                        Tuesday : Lunch - Dinner <br>
+                                                        Wednesday : <span style="color:red" > Lunch Closed </span> - Dinner <br>
+                                                        Thurday : Lunch - Dinner <br>
+                                                        Friday : Lunch - Dinner <br>
+                                                        Saturday : Lunch - Dinner <br>
+                                                        Sunday : <span style="color:red" > Closed </span> <br>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                {% endfor %}
+                                        <div class="v-focus-container-discount">
+                                        <div class="v-focus-discount" style="
+                                        {% if detail.discount <= 30 %}
+                                                background-color:rgb(24,126,55);
+                                        {% elseif detail.discount <= 60 %}
+                                                background-color:rgb(213,106,0);
+                                        {% else %}
+                                                background-color:rgb(183,15,23);
+                                        {% endif %}
+                                                ">
+                                                <span class="product-discount" > {{ detail.discount }}%<br>Discount </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+            {% endfor %}
+
+
+
+
+
+
+            {% javascripts '@LesCouvertsBundle/Resources/public/js/user-perspective.js' %}
+            <script src=" {{ asset_url }} " type="text/javascript"> </script>
+            {% endjavascripts %}
+
+        {% endblock %}

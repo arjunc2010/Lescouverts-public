@@ -1,0 +1,317 @@
+<style>
+
+
+    #information-container{
+        width: 100%;
+        min-height: 90px;
+        float: left;
+        aborder-style: dashed;
+        text-align: center;
+        margin-top: 30px;
+    }
+
+                #information-container form div :not(.form-container)  {
+                    margin-left: 20px;
+                    margin-bottom: 15px;
+                }
+
+                #information-container form label{
+                    margin-right: 20px;
+                }
+
+                #information-container form select{
+                    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+
+                }
+                #information-container form input[type='text'] , #information-container form input[type='number']{
+                    height: 48px;
+                    width: 311px;
+                    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                    border-color: #D8D8D8;
+                    border-style: double;
+                    text-align: center;
+                }
+
+                #information-container textarea{
+                    height: 48px;
+                    width: 311px;
+                    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                    border-color: #D8D8D8;
+                    border-style: double;
+                    text-align: center;
+                    position: relative;
+                    top: 26px;
+                }
+
+                #information-container form label{
+                    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+
+                }
+
+
+                #information-container button[type='submit']{
+                    height: 48px;
+                    width: 60%;
+                    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                    font-weight: bold;
+                    font-size: 15px;
+                    color: white;
+                    border-color: #53A11F;
+                    background-color: #53A11F;
+                    border-style: double;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    margin-top: 20px;
+                }
+
+
+    .form-container{
+        width: 70%;
+        margin-top: 11px;
+
+        aborder-style: dashed;
+        text-align: center;
+        display: inline-block;
+    }
+
+
+
+
+                .form-cell{
+                    border-bottom-style: groove;
+                    border-color: rgb(237,237,237);
+                    display: inline-block;
+                }
+
+
+                            .form-cell-title{
+                                font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                                color: rgb(127,127,127);
+                                font-size: 22px;
+
+                            }
+
+    div.ui-datepicker{
+        font-size:10px;
+    }
+
+    select#myInformation_vacation_period_start_year{
+        display: none;
+    }
+
+    select#myInformation_vacation_period_end_year{
+        display: none;
+    }
+</style>
+{#<link rel="stylesheet" type="text/css" href="{{ asset('bundles/support-files/css/bootstrap.css')}}"  />#}
+<link rel="stylesheet" href="{{ asset('bundles/ui/base/jquery.ui.all.css') }}">
+<script src="{{ asset('bundles/ui/jquery-1.10.2.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.core.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.widget.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.datepicker.js') }}"></script>
+{#<script src="{{ asset('bundles/support-files/js/bootstrap.min.js')}}" > </script>#}
+<script>
+
+
+
+    var menu1 = {
+        id: "menu1", title: "Hello World",
+        contents: [
+            {name: "Item 1"},
+            {name: "Item 2"},
+            {name: "Item 3"}
+        ]
+    };
+
+</script>
+
+<div id="information-container">
+
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+            <h1 class="form-cell-title" > MY RESTAURANT INFORMATION </h1>
+
+
+    <div class="form-container">
+        <div class="form-cell" >
+                    {{ form_row(form.number_of_reservations) }}
+        </div>
+    </div>
+
+    <div class="form-container">
+        <div class="form-cell" >
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.address) }}
+                    {{ form_row(form.cuisine) }}
+        </div>
+    </div>
+
+    <div class="form-container">
+        <span class="container-title">Pricing</span>
+        <div class="form-cell" >
+                    {{ form_row(form.menu_price_min) }}
+                    {{ form_row(form.menu_price_max) }}
+                    {{ form_row(form.meal_price_min) }}
+                    {{ form_row(form.meal_price_max) }}
+
+
+                    {{ form_row(form.payment_visa) }}
+                    {{ form_row(form.payment_master) }}
+                    {{ form_row(form.payment_ticket) }}
+        </div>
+    </div>
+
+    <div class="form-container">
+        <span class="container-title">Timings</span>
+        <div class="form-cell" >
+                    {{ form_row(form.servicing_hour_start) }}
+                    {{ form_row(form.servicing_hour_end) }}
+
+                    {{ form_row(form.vacation_period_start) }}
+                    {{ form_row(form.vacation_period_end) }}
+        </div>
+    </div>
+
+    <style>
+          .container-title{
+              font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+              font-size: 22px;
+              margin-bottom:10px;
+              display:block;
+          }
+            td label{
+                color:grey;
+            }
+            .row-title{
+                color: black;
+            }
+
+    </style>
+    <div class="form-container">
+            <span class="container-title">Opening Days</span>
+        <div class="form-cell" >
+            <table>
+                <tr>
+                    <td>
+                    <label class="row-title"> Monday: </label>
+                    </td>
+                    <td>
+                    <label>Breakfast</label>   {{ form_widget(form.mon1) }}
+                    </td>
+                    <td>
+                    <label>Lunch</label>    {{ form_widget(form.mon2) }}
+                    </td>
+                    <td>
+                    <label>Dinner</label>    {{ form_widget(form.mon3) }}
+                    </td>
+                </tr>
+                <tr>
+                        <td>
+                        <label class="row-title"> Tuesday: </label>
+                        </td>
+                        <td>
+                        <label>Breakfast</label>   {{ form_widget(form.tue1) }}
+                        </td>
+                        <td>
+                        <label>Lunch</label>    {{ form_widget(form.tue2) }}
+                        </td>
+                        <td>
+                        <label>Dinner</label>    {{ form_widget(form.tue3) }}
+                        </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label class="row-title"> Wednesday: </label>
+                    </td>
+                    <td>
+                        <label>Breakfast</label>   {{ form_widget(form.wed1) }}
+                    </td>
+                    <td>
+                        <label>Lunch</label>    {{ form_widget(form.wed2) }}
+                    </td>
+                    <td>
+                        <label>Dinner</label>    {{ form_widget(form.wed3) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="row-title"> Thursday: </label>
+                    </td>
+                    <td>
+                        <label>Breakfast</label>   {{ form_widget(form.thur1) }}
+                    </td>
+                    <td>
+                        <label>Lunch</label>    {{ form_widget(form.thur2) }}
+                    </td>
+                    <td>
+                        <label>Dinner</label>    {{ form_widget(form.thur3) }}
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label class="row-title"> Friday: </label>
+                    </td>
+                    <td>
+                        <label>Breakfast</label>   {{ form_widget(form.fri1) }}
+                    </td>
+                    <td>
+                        <label>Lunch</label>    {{ form_widget(form.fri2) }}
+                    </td>
+                    <td>
+                        <label>Dinner</label>    {{ form_widget(form.fri3) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="row-title"> Saturday: </label>
+                    </td>
+                    <td>
+                        <label>Breakfast</label>   {{ form_widget(form.sat1) }}
+                    </td>
+                    <td>
+                        <label>Lunch</label>    {{ form_widget(form.sat2) }}
+                    </td>
+                    <td>
+                        <label>Dinner</label>    {{ form_widget(form.sat3) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="row-title"> Sunday: </label>
+                    </td>
+                    <td>
+                        <label>Breakfast</label>   {{ form_widget(form.sun1) }}
+                    </td>
+                    <td>
+                        <label>Lunch</label>    {{ form_widget(form.sun2) }}
+                    </td>
+                    <td>
+                        <label>Dinner</label>    {{ form_widget(form.sun3) }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+    </div>
+    <div class="form-container">
+        <span class="container-title">Additional Information</span>
+        <div class="form-cell" >
+                    {{ form_row(form.terrace) }}
+                    {{ form_row(form.guides) }}
+                    {{ form_row(form.languages) }}
+
+        </div>
+
+        {{ form_row(form.save) }}
+
+    </div>
+
+
+    {{ form_end(form) }}
+
+</div>

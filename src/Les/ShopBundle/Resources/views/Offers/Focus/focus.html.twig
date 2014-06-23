@@ -1,0 +1,24 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/restaurant-homepage.css') }}" type="text/css" />
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/user-perspective.css') }}" type="text/css" />
+        {% endblock %}
+
+
+
+		{% block body %}
+
+                {{ form_start(form) }}
+                {{ form_end(form) }}
+
+
+            <script>
+            </script>
+
+
+        {% endblock %}

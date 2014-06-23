@@ -1,0 +1,73 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/restaurant-homepage.css') }}" type="text/css" />
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/user-perspective.css') }}" type="text/css" />
+        {% endblock %}
+
+
+
+		{% block body %}
+
+            <style>
+                .list-rank{
+                    position:absolute;
+                    right:40px;
+                    top: 50px;
+                }
+
+            </style>
+        {#
+            <div style="height:1000px;"></div>
+        #}
+
+
+            <div id="main-list-container">
+                {% set i = 1 %}
+                {% for resto in restos %}
+                    <a href="{{ path('resto_homepage', {'id' : resto.id}) }}" >
+                        <div class="list-container"
+                                {% if resto.id == id %}
+                                    id="target-division"
+                                    style="
+                                        border-style: solid;
+                                        border-color: red;
+                                     "
+                                {% endif %}
+                        >
+                            <div class="list-cell" >
+                                <span class="list-cell-data-name" > {{ resto.name }}</span><br>
+                                <span class="list-cell-data-address" > {{ resto.address }} </span><br>
+                                <span class="list-cell-data-type" > {{ resto.cuisine  }} </span><br>
+                            </div>
+                                <span class="list-rank">
+                                    {#{% if i < 3 %}#}
+                                        Rank :  {{ i }}
+                                    {#{% endif %}#}
+                                </span>
+                        </div>
+                    </a>
+                    {% set i = i + 1 %}
+                {% endfor %}
+            </div>
+
+
+
+            <script src="{{ asset('bundles/LesCouverts/js/jquery-2.1.1.min.js') }}" ></script>
+
+            <script>
+                $(document).ready( function(){
+                            $('html, body').animate({scrollTop : $('#target-division').position().top - 300 });
+
+
+                            return false;
+                        }
+                );
+            </script>
+
+
+        {% endblock %}

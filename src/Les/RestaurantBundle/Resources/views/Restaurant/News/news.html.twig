@@ -1,0 +1,53 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/resto-account.css') }}" type="text/css" />
+        {% endblock %}
+
+
+
+		{% block body %}
+
+
+
+
+
+             {% for new in news %}
+                    <div class="news-container">
+                        <div class="news-cell">
+                                                    <!-- here have to add logic for image decider -->
+                          {% if new.category == "starter" %}
+                            <img class="news-cell-left"  src="{{ asset('bundles/LesCouverts/images/news/starter.png') }}">
+                          {% elseif new.category == "main" %}
+                            <img class="news-cell-left"  src="{{ asset('bundles/LesCouverts/images/news/main.png') }}">
+                          {% elseif new.category == "dessert" %}
+                                <img class="news-cell-left"  src="{{ asset('bundles/LesCouverts/images/news/dessert.png') }}">
+                          {% endif %}
+                            <div class="news-cell-center">
+                                <span class="news-title">{{ new.text }}</span><br>
+                                <span class="news-date">Since :  <strong> {{ new.dateCreated|date('m-d-Y') }} </strong></span>
+                            </div>
+                        </div>
+                    </div>
+             {% endfor %}
+
+            <!--  ---------------------  -->
+
+
+
+
+
+
+
+
+
+
+
+            <script src="{{ asset('bundles/LesCouverts/js/jquery-2.1.1.min.js') }}" ></script>
+            <script>
+            </script>
+        {% endblock %}

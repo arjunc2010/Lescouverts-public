@@ -1,0 +1,94 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/resto-account.css') }}" type="text/css" />
+            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/support-files/css/bootstrap.css')}}"  />
+
+        {% endblock %}
+
+
+
+		{% block body %}
+    {% set i=1 %}
+        {% for special in specials %}
+                <div class="offer-container">
+                    <div class="offer-cell" target="{{ i }}">
+                       {# <img class="img-close" src="{{ asset('bundles/LesCouverts/images/close.png') }}" />#}
+                        <img class="img-modify" src="{{ asset('bundles/LesCouverts/images/modify.png') }}" />
+
+                        <div class="offer-cell-center">
+                            <span class="offer-title" id="title-{{ i }}">{{ special }}</span><br>
+                        </div>
+                    </div>
+                </div>
+            {% set i= i+1 %}
+        {% endfor %}
+            <!--  ---------------------  -->
+
+
+
+            <div id="myModal" class="modal hide fade" target="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3 id="myModalLabel">Update Entry</h3>
+                </div>
+                <div class="modal-body" id="form-container">
+                    <div>
+                        <input type="text" id="form-text" name="form[text]" required="required">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button id="form-save" class="btn btn-primary">Save</button>
+                </div>
+                <div id="form-info" target="" row="" ></div>
+            </div>
+
+
+
+
+            <script src="{{ asset('bundles/LesCouverts/js/jquery-2.1.1.min.js') }}" ></script>
+            <script src="{{ asset('bundles/support-files/js/bootstrap.min.js')}}" > </script>
+
+            <script>
+                $('.img-modify').click(function(){
+                    var parent = $(this).parent();
+                    var target = parent.attr('target');
+                    var title = $('#title-'+target);
+                    $('#form-text').val( title.text() );
+                    $('#form-info').attr({
+                        'target': parent.attr('target'),
+                        'row':parent.attr('target')});
+                    $('#myModal').modal({
+                        show: true
+                    });
+                });
+
+                $('#form-save').click(function(){
+                    $('#myModal').modal('hide');
+                    var text = $('#form-text');
+                    var id = $('#form-info').attr('row');
+                    var title =   $('#news-container').find("[target='"+id +"' ]")
+                    console.log( id + text.val() + title.length );
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ path('restaurant_my_special_offers') }}",
+                        data: {
+                            action: 'update',
+                            id: id,
+                            text: text.val()
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            console.log( response );
+                        }
+                    });
+
+                });
+            </script>
+        {% endblock %}

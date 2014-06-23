@@ -1,0 +1,190 @@
+
+
+		 	  #search-container{
+	 		  	width: 100%;
+	 		  	min-height: 90px;
+	 		  	float: left;
+	 		  	aborder-style: dashed;
+	 		  	text-align: center;
+	 		  	margin-top: 30px;
+                  font-size: 15px;
+	 		  }					
+
+	 		  		.search-field{
+	 		  			aheight: 100px;
+	 		  			aborder-style: dashed;
+	 		  			display: inline-block;
+	 		  			margin-left: 20px;
+	 		  			margin-bottom: 10px;
+	 		  		}
+
+	 		  				.search-field input[type='text']{
+	 		  					height: 48px;
+								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+								border-color: #D8D8D8;
+								border-style: double;
+
+	 		  				}
+
+	 		  				.search-field label{
+								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+
+	 		  				}
+
+
+	 		  				.search-field input[type='submit']{
+	 		  					height: 48px;
+	 		  					width: 150px;
+								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+								font-weight: bold;
+								font-size: 15px;
+								color: white;
+								border-color: rgb(116,132,255);
+								background-color: rgb(116,132,255);
+								border-style: double;
+								border-radius: 5px;
+								cursor: pointer;
+	 		  				}
+
+
+
+
+#main-list-container{
+	width: 100%;
+	min-height: 749px;
+	aborder-style: dashed;
+	display: inline-block;
+}
+
+
+	 		  .list-container{
+	 		  	width: 70%;
+	 		  	height: 120px;
+                position: relative;
+	 		  	aborder-style: dashed;
+	 		  	text-align: center;
+	 		  	display: inline-block;
+
+	 		  }
+
+		 			.list-cell{
+		 				width: 90%;
+		 				height: 94px;
+		 				border-bottom-style: groove;
+		 				border-color: rgb(237,237,237);
+		 				display: inline-block;
+		 			}
+
+                        .list-cell:hover{
+                            box-shadow: 10px 10px 5px #888888;
+                        }
+
+
+		 					.list-cell span{
+		 						position: relative;
+		 						top:11px;
+		 					}
+		 					.list-cell-data-name{
+								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+		 						color: rgb(127,127,127);
+		 						font-size: 22px;
+		 					}
+
+		 					.list-cell-data-address{
+								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+		 						color: rgb(165,165,165);
+		 						font-size: 16.5px;
+		 					}
+
+		 					.list-cell-data-type{
+								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+		 						color: rgb(165,165,165);
+
+		 					}
+
+
+	 		  .p-list-container{
+	 		  	width: 70%;
+	 		  	height: 120px;
+	 		  	aborder-style: dashed;
+	 		  	margin-top: 20px;
+	 		  	text-align: center;
+	 		  	display: inline-block;
+	 		  }
+
+		 			.p-list-cell{
+		 				width: 100%;
+		 				height: 125px;
+		 				border-bottom-style: groove;
+		 				border-color: rgb(237,237,237);
+		 				text-align: center;
+
+		 			}
+
+		 			.p-list-cell-left{
+		 				width:80%;
+		 				aborder-style: dashed;
+		 				display: inline-block;
+		 			}
+
+		 			.p-list-cell-right{
+		 				width:18%;
+		 				aborder-style: dashed;
+		 				display: inline-block;
+		 				position: relative;
+		 				top:10px;
+		 			}
+
+		 					.p-list-cell span{
+		 						position: relative;
+		 						top:11px;
+		 					}
+		 					.p-list-cell-data-name{
+								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+		 						color: rgb(127,127,127);
+		 						font-size: 22px;
+		 					}
+
+		 					.p-list-cell-data-event{
+								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+		 						color: rgb(165,165,165);
+		 						font-size: 16.5px;
+		 						margin-left:30px;
+		 					}
+
+		 					.p-list-cell-data-description{
+								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+		 						color: rgb(165,165,165);
+		 						margin-top: 14px;
+		 					}
+
+	 		  				.p-list-cell input[type='submit']{
+	 		  					height: 39px;
+	 		  					width: 150px;
+								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+								font-weight: bold;
+								font-size: 15px;
+								color: white;
+								border-color: rgb(116,132,255);
+								background-color: rgb(116,132,255);
+								border-style: double;
+								border-radius: 5px;
+	 		  				}
+
+                              .p-list-cell button{
+                                  height: 39px;
+                                  width: 150px;
+                                  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                                  font-weight: bold;
+                                  font-size: 15px;
+                                  color: white;
+                                  border-color: rgb(116,132,255);
+                                  background-color: rgb(116,132,255);
+                                  border-style: double;
+                                  border-radius: 5px;
+                                  cursor: pointer;
+                              }
+
+/* -----------------------    Restaurant Main Page         ------------------------------------- */
+
+

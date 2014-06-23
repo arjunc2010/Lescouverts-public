@@ -1,0 +1,28 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/restaurant-homepage.css') }}" type="text/css" />
+        {% endblock %}
+
+
+		{% block body %}
+
+            {% include 'LesRestaurantBundle:Restaurant:Feedback/Blocks/feedbackForm.html.twig' %}
+
+
+
+
+
+
+
+            <script src="{{ asset('bundles/LesCouverts/js/jquery-2.1.1.min.js') }}" ></script>
+
+            <script>
+            </script>
+
+
+        {% endblock %}

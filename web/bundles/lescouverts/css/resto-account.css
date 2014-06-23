@@ -1,0 +1,286 @@
+
+ 		#container{
+ 			width: 80%;
+ 			height: 1000px;
+ 			aborder-style: dashed;
+ 			position: relative;
+ 			left: 10%;
+ 		}
+
+
+	 		  .news-container{
+	 		  	/*width: 100%;*/
+	 		  	/*float: left;*/
+	 		  	aborder-style: dashed;
+	 		  	text-align: center;
+	 		  	margin-top: 30px;
+
+	 		  }
+
+		 			.news-cell{
+		 				width: 1010px;
+		 				height: 156px;
+		 				border-bottom-style: groove;
+		 				border-color: rgb(237,237,237);
+		 				position: relative;
+		 				display: inline-block;
+		 			}
+
+			 			.news-cell-left{
+			 				width:184px;
+			 				height: 140px;
+			 				aborder-style: dashed;
+			 				float: left;
+			 				margin-left: 70px;
+			 			}
+
+			 			.news-cell-center{
+			 				width: 60%;
+			 				aborder-style:dashed;
+			 				float: left;
+			 				margin-left: 50px;
+			 				position:relative;
+			 				top: 60px;
+			 			}
+
+					 				.news-cell-center .news-title{
+					 					color: grey;
+					 					font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+					 					afont-weight: bold;
+					 					font-size: 20px;
+					 					position: relative;
+					 					top: 20%;
+					 					text-align: center;
+					 				}
+					 				
+					 				.news-cell-center .news-date{
+					 					color: grey;
+					 					font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+					 					font-size: 17px;
+					 					position: relative;
+					 					top: 20%;
+					 					text-align: center;
+					 				}
+
+		.news-cell .img-close{
+						position: absolute;
+						top:0px;
+						right:0px;
+					}
+
+		.news-cell .img-modify{
+						position: absolute;
+						top:-6px;
+						right:29px;
+
+					}
+
+
+		
+
+
+			.menu-container{
+				aborder-style: dashed;
+				width: 140px;
+				height: 250px;
+				margin-top: 30px;
+				margin-left: 30px;
+				display: inline-block;
+				margin-bottom: 30px;
+				position: relative;
+
+			}
+
+					 .img-type{
+						width:140px;
+						height:140px;
+					}
+
+					.menu-container .img-close{
+						position: absolute;
+						top:-10px;
+						right:-10px;
+					}
+
+
+
+					.menu-container span{
+						font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+					}
+
+					.menu-container button{
+						width:140px;
+						height: 40px;
+						margin-top: 10px;
+						font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+						font-weight: bold;
+						font-size: 15px;
+						color: white;
+						border-color: rgb(116,132,255);
+						background-color: rgb(116,132,255);
+					}
+
+							.menu-container .button-update{
+									width:120px;
+									border-color: rgb(200,191,231);
+									background-color: rgb(200,191,231);
+
+							}
+
+
+
+	 		  .e-list-container{
+	 		  	min-width: 670px;
+	 		  	/*height: 149px;*/
+	 		  	aborder-style: dashed;
+	 		  	text-align: center;
+	 		  	display: inline-block;
+	 		  	margin-top: 20px;
+	 		  }
+
+		 			.e-list-cell{
+		 				width: 90%;
+		 				height: 125px;
+		 				border-bottom-style: groove;
+		 				border-color: rgb(237,237,237);
+		 				text-align: center;
+                        display: inline-block;
+                        margin-top: 10px;
+		 			}
+
+		 			.e-list-cell-left{
+		 				width:75%;
+		 				aborder-style: dashed;
+		 				float: left;
+		 			}
+
+		 			.e-list-cell-right{
+		 				width:23%;
+		 				aborder-style: dashed;
+		 				float:left;
+		 				position: relative;
+		 				top:10px;
+		 			}
+
+		 					.e-list-cell span{
+		 						position: relative;
+		 						/*top:11px;*/
+		 					}
+		 					.e-list-cell-data-name{
+								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+		 						color: rgb(127,127,127);
+		 						font-size: 22px;
+                                display: block;
+                                margin-top:3px;
+                                /*margin-bottom:3px;*/
+		 					}
+
+		 					.e-list-cell-data-event{
+								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+		 						color: rgb(165,165,165);
+		 						font-size: 16px;
+		 						margin-left:30px;
+		 					}
+
+		 					.e-list-cell-data-description{
+								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+		 						color: rgb(165,165,165);
+		 						margin-top: 14px;
+		 					}
+
+
+					.e-list-cell-right  input[type='submit']{
+				  			height: 40%;
+				  			width: 60%;
+							font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+							font-weight: bold;
+							font-size: 15px;
+							color: white;
+							border-color: rgb(116,132,255);
+							background-color: rgb(116,132,255);
+							border-style: double;
+							border-radius: 5px;
+							position: relative;
+							top: 40px;
+		 		  		}
+
+		 		  	 .e-list-container .img-close{
+						position: absolute;
+						top:-5px;
+						right:60px;
+					}
+
+					 .e-list-container .img-modify{
+						position: absolute;
+						top:-13px;
+						right:89px;
+					}
+
+					 .e-list-container .img-exist{
+						position: absolute;
+						bottom:-20px;
+						right:-10px;
+					}
+
+
+
+
+		  .offer-container{
+ 		  	/*width: 100%;*/
+ 		  	/*float: left;*/
+ 		  	aborder-style: dashed;
+ 		  	text-align: center;
+ 		  	margin-top: 30px;
+ 		  	display: inline-block;
+ 		  }
+
+		 			.offer-cell{
+		 				width: 1010px;
+		 				height: 102px;
+		 				border-bottom-style: groove;
+		 				border-color: rgb(237,237,237);
+		 				position: relative;
+		 				text-align: center;
+		 			}
+
+
+
+			 			.offer-cell-center{
+			 				width: 60%;
+			 				aborder-style:dashed;
+			 				margin-left: 50px;
+			 				position:relative;
+			 				top: 30px;
+			 				display: inline-block;
+			 			}
+
+					 				.offer-cell-center .offer-title{
+					 					color: grey;
+					 					font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+					 					afont-weight: bold;
+					 					font-size: 20px;
+					 					position: relative;
+					 					top: 20%;
+					 					text-align: center;
+					 				}
+					 				
+
+		.offer-cell .img-close{
+						position: absolute;
+						top:0px;
+						right:0px;
+					}
+
+		.offer-cell .img-modify{
+						position: absolute;
+						top:-8px;
+						right:29px;
+
+					}
+
+
+        .img-close{
+            cursor: pointer;
+            z-index: 100;
+
+        }

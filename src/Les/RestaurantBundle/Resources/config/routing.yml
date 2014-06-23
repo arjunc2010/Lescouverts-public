@@ -1,0 +1,40 @@
+resto_admin_index:
+    pattern:  /
+    defaults: { _controller: LesRestaurantBundle:Admin:admin}
+
+restaurant_my_information:
+    pattern:  /my-information/
+    defaults: { _controller: LesRestaurantBundle:Admin:myInformation }
+
+restaurant_my_personal_information:
+    pattern:  /my-personal-information/
+    defaults: { _controller: LesRestaurantBundle:Admin:myPersonalInformation }
+
+restaurant_my_menus:
+    pattern:  /my-menus/
+    defaults: { _controller: LesRestaurantBundle:Admin:myMenus }
+
+restaurant_my_news:
+    pattern:  /my-news/
+    defaults: { _controller: LesRestaurantBundle:Admin:myNews }
+
+restaurant_my_special_offers:
+    pattern:  /my-special-offers/
+    defaults: { _controller: LesRestaurantBundle:Admin:mySpecialOffers }
+
+restaurant_my_events:
+    pattern:  /my-events/
+    defaults: { _controller: LesRestaurantBundle:Admin:myEvents }
+
+restaurant_my_ranking:
+    pattern:  /my-ranking/
+    defaults: { _controller: LesRestaurantBundle:Admin:myRanking }
+
+restaurant_my_comments:
+    pattern:  /my-comments/
+    defaults: { _controller: LesRestaurantBundle:Admin:myComments }
+
+booking_admin:
+    pattern:  /booking_admin/
+    defaults: { _controller: LesRestaurantBundle:BookingAdmin:index }
+

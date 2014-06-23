@@ -1,0 +1,48 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/resto-account.css') }}" type="text/css" />
+        {% endblock %}
+
+
+
+		{% block body %}
+
+            <div>
+                <div class="e-list-container">
+                    {% for event in events %}
+
+                            <div class="e-list-cell">
+                                <div class="e-list-cell-left">
+                                    <span class="e-list-cell-data-name" > {{ event.name }} </span><br>
+                                    <span class="e-list-cell-data-event" > <strong> {{ event.date|date("m-d-y") }} </strong> </span>
+                                    <span class="e-list-cell-data-event" > From {{ event.start|date('H:m') }} till {{ event.end|date('H:m') }} </span>
+
+                                    <br>
+                                    <div class="e-list-cell-data-description" > {{ event.description }}  </div>
+                                </div>
+                                <div class="e-list-cell-right">
+                                    <form>
+                                        <input type="submit" name="upload" value="Menu" />
+                                    </form>
+                                </div>
+                            </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+            <script src="{{ asset('bundles/LesCouverts/js/jquery-2.1.1.min.js') }}" ></script>
+            <script>
+            </script>
+        {% endblock %}

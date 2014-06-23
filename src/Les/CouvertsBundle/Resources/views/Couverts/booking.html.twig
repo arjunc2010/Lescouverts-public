@@ -1,0 +1,50 @@
+
+	{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+     			{{ parent( )}}
+ 				<link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/user-perspective.css') }}" type="text/css" />
+ 			{% endblock %}
+
+
+		{% block body %}
+
+                    {% include 'LesCouvertsBundle:Couverts:Blocks/searchForm.html.twig' %}
+
+
+
+
+            <div id="main-list-container">
+                        {% for resto in restaurants %}
+                             <a href="{{ path('resto_homepage', {'id' : resto.id}) }}" >
+							   	    <div class="list-container">
+								 		<div class="list-cell" >
+								 			<span class="list-cell-data-name" > {{ resto.name }}</span><br>
+								 			<span class="list-cell-data-address" > {{ resto.address }} </span><br>
+								 			<span class="list-cell-data-type" > {{ resto.cuisine  }} </span><br>
+								 		</div>
+								 	</div>
+                             </a>
+                        {% endfor %}
+
+
+		    		</div>
+
+
+
+
+
+
+		 		{% javascripts '@LesCouvertsBundle/Resources/public/js/user-perspective.js' %}
+					<script src=" {{ asset_url }} " type="text/javascript"> </script>
+				{% endjavascripts %}
+
+            {#<script src="{{ asset('bundles/LesCouverts/js/jquery-2.1.1.min.js') }}" ></script>#}
+
+                <script>
+                </script>
+
+
+	  	{% endblock %}

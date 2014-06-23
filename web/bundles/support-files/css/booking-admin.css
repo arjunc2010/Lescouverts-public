@@ -1,0 +1,84 @@
+.footer-button , #footer-container{
+    background-color:grey;
+    color: white;
+}
+.footer-button:hover{
+    color:black;
+}
+
+	#control-container{
+		/*border-style: dashed;*/
+		/*border-color: red;*/
+		height: 700px;
+		min-width: 434px;
+		/*margin-top: 100px;*/
+		position: relative;
+	}
+
+
+		#control-option{
+			/*border-style: dashed;*/
+			/*border-color: blue;*/
+			width:29%;
+			min-width: 185px;
+			height: 100%;
+			/*position: absolute;*/
+			/*left: 0px;*/
+			text-align: center;
+            float: left;
+
+		}
+				.control-option-button{
+					width: 70%;
+					height: 66px;
+					display: inline-block;
+					margin-top: 10px;
+					background-color: #D8D8D8;
+					color: #0B0B61;
+                    font-weight: bold;
+				}
+
+				.control-option-button:hover{
+					box-shadow: 0px 0px 25px #7544C5;
+					color: white;
+				}
+
+							.control-option-button .title{
+								display: inline-block;
+								margin-top: 20px;
+								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+								font-size: 130%; 
+								
+							}
+
+
+		#control-content{
+			/*border-style: dashed;*/
+			/*border-color: green;*/
+			width:70%;
+			min-width: 434px;
+			height: 100%;
+			/*position: absolute;*/
+			/*right: 0px;*/
+			background-color: white;
+            float: left;
+		}
+
+
+				#control-content-container{
+					/*border-style: dashed;*/
+					/*border-color: pink;*/
+					width:100%;
+					height: 100%;
+					display: none;
+					background-color: grey;
+					position: absolute;
+					top: 0px;
+					z-index: 10;
+
+				}
+
+    .link-active{
+        background-color:grey;
+        color: white;
+    }

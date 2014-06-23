@@ -1,0 +1,279 @@
+
+<style>
+    #search-container{
+        width: 74%;
+        min-height: 90px;
+        display: inline-block;
+        aborder-style: dashed;
+        margin-top: 30px;
+        margin-left:200px;
+    }
+
+    #search-container form div{
+        display: inline-block;
+        /*margin-left: 20px;*/
+        margin-bottom: 10px;
+    }
+
+
+
+    #search-container form input[type='text'],  #search-container select{
+        height: 48px;
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+        border-color: #D8D8D8;
+        border-style: double;
+        text-align: center;
+        /*margin-left: 20px;*/
+    }
+
+
+
+    #search-container form label{
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+
+    }
+
+
+    #search-container button[type='submit']{
+        height: 48px;
+        width: 150px;
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+        font-weight: bold;
+        font-size: 15px;
+        color: white;
+        border-color: rgb(116,132,255);
+        background-color: rgb(116,132,255);
+        border-style: double;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 20px;
+
+    }
+</style>
+
+
+<link rel="stylesheet" href="{{ asset('bundles/ui/base/jquery.ui.all.css') }}">
+<script src="{{ asset('bundles/ui/jquery-1.10.2.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.core.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.widget.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.datepicker.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.mouse.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.slider.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.position.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.menu.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.autocomplete.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('bundles/ui/demos.css') }}">
+<script>
+    $(function() {
+        $( "#search_valid_from" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 3,
+            onClose: function( selectedDate ) {
+                $( "#to" ).datepicker( "option", "minDate", selectedDate );
+            }
+        });
+        $( "#search_valid_till" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 3,
+            onClose: function( selectedDate ) {
+                $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+            }
+        });
+    });
+</script>
+
+{#{{ priceMin }} - {{ priceMax }}#}
+<script>
+
+
+    $(function() {
+        $( "#slider-range-price" ).slider({
+            orientation: "vertical",
+            range: true,
+            animate: "slow",
+            max:{{ MAXPRICE }},
+            values: [ {{ priceMin }}, {{ priceMax }} ],
+            slide: function( event, ui ) {
+                $( "#search_price" ).val( ui.values[ 0 ] + "-" + ui.values[ 1 ] );
+            }
+        });
+
+        $( "#search_price" ).val($( "#slider-range-price" ).slider( "values", 0 ) +
+                "-" + $( "#slider-range-price" ).slider( "values", 1 ) );
+
+
+        $( "#slider-range-discount" ).slider({
+            orientation: "vertical",
+            range: "max",
+            min:0,
+            max:100,
+            value:{{ discount }},
+            animate: "slow",
+            slide: function( event, ui ) {
+                $( "#search_discount" ).val(ui.value);
+            }
+        });
+        $( "#search_discount" ).val( $( "#slider-range-discount").slider( "value" ) );
+    });
+
+</script>
+
+<script>
+    $(function() {
+//        var names = [ "Jörn Zaefferer", "Scott González", "John Resig" ];
+
+        var productNames = [
+                        {% for i in range(0, name|length -1) %}
+                                {% if i != name|length -1  %}
+                                    "{{ name[i] }}"  ,
+                                {% else %}
+                                   "{{ name[i] }}"
+                                {% endif %}
+                        {% endfor %}
+                    ];
+
+        var productPlace = [
+            {% for i in range(0, place|length -1) %}
+                    {% if i != place|length -1  %}
+                        "{{ place[i] }}"  ,
+                    {% else %}
+                        "{{ place[i] }}"
+                    {% endif %}
+            {% endfor %}
+        ];
+
+        var accentMap = {
+            "â": "a", "á": "a", "à": "a", "æ": "ae",
+            "ç": "c",
+            "é": "e", "è": "e","ê": "e","ë": "e",
+            "ö": "o","ô": "o","œ": "oe",
+            "ï": "i","î": "i",
+            "ù": "u","û": "u","ü": "u",
+            "ÿ": "y"
+        };
+
+        var normalize = function( term ) {
+            var ret = "";
+            for ( var i = 0; i < term.length; i++ ) {
+                ret += accentMap[ term.charAt(i) ] || term.charAt(i);
+            }
+            return ret;
+        };
+
+        $( "#search_product_name" ).autocomplete({
+            source: function( request, response ) {
+                var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
+                response( $.grep( productNames, function( value ) {
+                    value = value.label || value.value || value;
+                    return matcher.test( value ) || matcher.test( normalize( value ) );
+                }) );
+            }
+        });
+
+        $( "#search_place" ).autocomplete({
+            source: function( request, response ) {
+                var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
+                response( $.grep( productPlace, function( value ) {
+                    value = value.label || value.value || value;
+                    return matcher.test( value ) || matcher.test( normalize( value ) );
+                }) );
+            }
+        });
+    });
+
+
+</script>
+
+
+    <style>
+        #slider-range-container-price, #slider-range-container-discount{
+            width:50px;
+            position:absolute;
+            top:57px;
+            right:30%;
+            margin-top:7px;
+            z-index:100;
+            /*background-color:white;*/
+            /*height: 157px;*/
+        }
+
+        .img-close{
+            width:12px;
+            position:absolute;
+            top:0px;
+            right:0px;
+            cursor:pointer;
+        }
+
+    </style>
+
+
+
+
+    <div style="width: 100%;text-align: center;">
+            <div id="search-container">
+
+
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
+
+                        {{ form_row(form.product_name) }}
+
+                        <div id="form-price-container" style="position: relative;">
+                             {{ form_label(form.price) }}
+                             {{ form_widget(form.price) }}
+                                <div id="slider-range-container-price" >
+                                    <div id="slider-range-price" style="height:200px;"></div>
+                                    <img src="{{ asset('bundles/support-files/images/cross.jpg') }}" class="img-close" />
+                                </div>
+                        </div>
+
+                        {{ form_row(form.place) }}
+
+                        <div id="form-price-container" style="position: relative;">
+                            {{ form_label(form.discount) }}
+                            {{ form_widget(form.discount) }}
+                            <div id="slider-range-container-discount" >
+                                <div id="slider-range-discount" style="height:200px;"></div>
+                                <img src="{{ asset('bundles/support-files/images/cross.jpg') }}" class="img-close" />
+                            </div>
+                        </div>
+
+
+                        {{ form_row(form.valid_from) }}
+                        {{ form_row(form.valid_till) }}
+
+
+                        {{ form_row(form.sort_by) }}
+                        {{ form_row(form.search) }}
+
+
+                        {{ form_end(form) }}
+
+            </div>
+
+    </div>
+
+
+<script type="text/javascript">
+    $('body').ready(function(){
+        $('#slider-range-container-price').css('display','none');
+        $('#slider-range-container-discount').css('display','none');
+    });
+
+    $('#search_price').focus(function(){
+        $('#slider-range-container-price').slideDown();
+    });
+
+    $('#search_discount').focus(function(){
+        $('#slider-range-container-discount').slideDown();
+    });
+
+    $('.img-close').click(function(){
+        $(this).parent().slideUp();
+    });
+
+
+</script>

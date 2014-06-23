@@ -1,0 +1,65 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/support-files/css/booking-admin.css') }}" type="text/css" />
+        {% endblock %}
+
+
+		{% block body %}
+
+
+            <script src="{{ asset('bundles/support-files/js/jquery-1.10.1.min.js') }}"></script>
+            <script src="{{ asset('bundles/support-files/js/idangerous.swiper-2.1.min.js') }}"></script>
+
+            <div id="control-container">
+                <div id="control-option">
+                    <a href="control-panel.php">
+                        <div class="control-option-button link-active" >
+                            <label class="title"> Bookings </label>
+                        </div>
+                    </a>
+                    <a href="control-panel-report.php">
+                        <div class="control-option-button" >
+                            <label class="title"> Reports </label>
+                        </div>
+                    </a>
+                    <a href="control-panel-vouchers.php">
+                        <div class="control-option-button" >
+                            <label class="title"> Vouchers </label>
+                        </div>
+                    </a>
+                    <a href="control-panel-option.php">
+                        <div class="control-option-button" >
+                            <label class="title"> Options </label>
+                        </div>
+                    </a>
+                    <a href="control-panel-restaurant.php">
+                        <div class="control-option-button" >
+                            <label class="title"> Restaurant </label>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div id="control-content">
+
+                    <div style="width:800px" >
+                        {% include 'LesRestaurantBundle:BookingAdmin:Blocks/panel-booking.html.twig' %}
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+        {% endblock %}

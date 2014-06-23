@@ -1,0 +1,75 @@
+<style>
+
+    #p-form-container{
+        width: 374px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        padding: 50px;
+        border-style: solid;;
+        border-color: #D8D8D8;
+        display: inline-block;
+    }
+
+
+        #p-form-container  label {
+            font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+            margin-bottom:8px;
+            display:block;
+        }
+
+            #p-form-container select, #p-form-container option {
+                width: 139px;
+                height: 30px;
+                font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                border-color: #D8D8D8;
+                border-style: double;
+                text-align: center;
+                margin-bottom:20px;
+            }
+
+
+                    #p-form-container button[type='submit']{
+                        height: 33px;
+                        width: 94px;
+                        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                        font-weight: bold;
+                        font-size: 15px;
+                        color: white;
+                        border-color: rgb(116,132,255);
+                        background-color: rgb(116,132,255);
+                        border-style: double;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        margin-left:46px;
+                    }
+</style>
+
+
+
+<div>
+<div id="p-form-container">
+ {{ form_start( form ) }}
+
+                    <div>
+                          <label> Were you satisfied with our service? </label>
+                            {{ form_widget(form.service) }}
+                    </div>
+
+                    <div>
+                        <label> Did you find our dishes attractive? </label>
+                            {{ form_widget(form.platter) }}
+                    </div>
+
+                     <div>
+                         <label> Were you satisfied with the quality of our food? </label>
+                            {{ form_widget(form.quality) }}
+                    </div>
+
+                     <div>
+                            {{ form_widget(form.submit) }}
+                    </div>
+
+ {{ form_end( form ) }}
+</div>
+
+</div>

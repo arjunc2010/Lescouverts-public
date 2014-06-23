@@ -1,0 +1,143 @@
+
+<style>
+    #search-container{
+        width: 100%;
+        min-height: 90px;
+        float: left;
+        aborder-style: dashed;
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    #search-container form div{
+        display: inline-block;
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+
+
+
+    #search-container form input[type='text']{
+        height: 48px;
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+        border-color: #D8D8D8;
+        border-style: double;
+        text-align: center;
+    }
+
+    #search-container form label{
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+
+    }
+
+
+    #search-container button[type='submit']{
+        height: 48px;
+        width: 150px;
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+        font-weight: bold;
+        font-size: 15px;
+        color: white;
+        border-color: rgb(116,132,255);
+        background-color: rgb(116,132,255);
+        border-style: double;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+<link rel="stylesheet" href="{{ asset('bundles/ui/base/jquery.ui.all.css') }}">
+<script src="{{ asset('bundles/ui/jquery-1.10.2.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.core.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.widget.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.datepicker.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.mouse.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.slider.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.position.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.menu.js') }}"></script>
+<script src="{{ asset('bundles/ui/jquery.ui.autocomplete.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('bundles/ui/demos.css') }}">
+
+<script>
+    $(function() {
+//        var names = [ "Jörn Zaefferer", "Scott González", "John Resig" ];
+//        var cuisine = [ "Jörn Zaefferer", "Scott González", "John Resig" ];
+
+        var names = [
+            {% for i in range(0, name|length -1) %}
+                {% if i != name|length-1 %}
+                        "{{ name[i] }}"  ,
+                {% else  %}
+                        "{{ name[i] }}"
+                {% endif %}
+            {% endfor %}
+        ];
+
+        var cuisine = [
+            {% spaceless %}
+                {% for i in range(0, cuisine|length -1) %}
+                     {% if i != cuisine|length -1  %}
+                        "{{ cuisine[i] }}" ,
+                    {% else %}
+                        "{{ cuisine[i] }}"
+                    {% endif %}
+                {% endfor %}
+            {% endspaceless %}
+        ];
+
+        var accentMap = {
+            "â": "a", "á": "a", "à": "a", "æ": "ae",
+            "ç": "c",
+            "é": "e", "è": "e","ê": "e","ë": "e",
+            "ö": "o","ô": "o","œ": "oe",
+            "ï": "i","î": "i",
+            "ù": "u","û": "u","ü": "u",
+            "ÿ": "y"
+        };
+
+        var normalize = function( term ) {
+            var ret = "";
+            for ( var i = 0; i < term.length; i++ ) {
+                ret += accentMap[ term.charAt(i) ] || term.charAt(i);
+            }
+            return ret;
+        };
+
+        $( "#search_name" ).autocomplete({
+            source: function( request, response ) {
+                var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
+                response( $.grep( names, function( value ) {
+                    value = value.label || value.value || value;
+                    return matcher.test( value ) || matcher.test( normalize( value ) );
+                }) );
+            }
+        });
+
+        $( "#search_cuisine" ).autocomplete({
+            source: function( request, response ) {
+                var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
+                response( $.grep( cuisine, function( value ) {
+                    value = value.label || value.value || value;
+                    return matcher.test( value ) || matcher.test( normalize( value ) );
+                }) );
+            }
+        });
+    });
+
+
+</script>
+
+<div id="search-container">
+
+
+        {{ form_start(ourForm) }}
+        {{ form_errors(ourForm) }}
+
+              {{ form_row(ourForm.name) }}
+
+              {{ form_row(ourForm.arrondissement) }}
+
+              {{ form_row(ourForm.cuisine) }}
+
+        {{ form_end(ourForm) }}
+
+</div>

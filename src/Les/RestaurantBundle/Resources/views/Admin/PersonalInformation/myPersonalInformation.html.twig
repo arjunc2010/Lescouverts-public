@@ -1,0 +1,29 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/restaurant-homepage.css') }}" type="text/css" />
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/user-perspective.css') }}" type="text/css" />
+        {% endblock %}
+
+
+
+		{% block body %}
+
+
+
+
+            {% include 'LesRestaurantBundle:Admin:PersonalInformation/Blocks/myPersonalInformationForm.html.twig' %}
+
+
+
+            <script src="{{ asset('bundles/LesCouverts/js/jquery-2.1.1.min.js') }}" ></script>
+
+            <script>
+            </script>
+
+
+        {% endblock %}

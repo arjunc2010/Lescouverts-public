@@ -1,0 +1,126 @@
+<style>
+
+
+    #information-container{
+        width: 100%;
+        min-height: 90px;
+        float: left;
+        aborder-style: dashed;
+        text-align: center;
+        margin-top: 30px;
+    }
+
+            #information-container form div :not(.form-container)  {
+                margin-left: 20px;
+                margin-bottom: 15px;
+            }
+
+            #information-container form label{
+                margin-right: 20px;
+            }
+
+            #information-container form input[type='text'] , #information-container form input[type='number']{
+                height: 48px;
+                width: 311px;
+                font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                border-color: #D8D8D8;
+                border-style: double;
+                text-align: center;
+            }
+
+            #information-container form label{
+                font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+
+            }
+
+
+                            button[type='submit']{
+                                height: 48px;
+                                width: 49%;
+                                font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                                font-weight: bold;
+                                font-size: 15px;
+                                color: white;
+                                border-color: #53A11F;
+                                background-color: #53A11F;
+                                border-style: double;
+                                border-radius: 5px;
+                                cursor: pointer;
+                                margin-top: 20px;
+                            }
+
+
+    .form-container{
+        width: 70%;
+        margin-top: 50px;
+
+        aborder-style: dashed;
+        text-align: center;
+        display: inline-block;
+    }
+
+
+
+
+    .form-cell{
+        border-bottom-style: groove;
+        border-color: rgb(237,237,237);
+        display: inline-block;
+    }
+
+
+    .form-cell-title{
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+        color: rgb(127,127,127);
+        font-size: 22px;
+    }
+                .form-cell-sub-title{
+                    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                    color: rgb(127,127,127);
+                    font-size: 17px;
+                    position: relative;
+                    left: 720px;
+                    width: 230px;
+                }
+
+</style>
+
+<div id="information-container">
+
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    <h1 class="form-cell-title" > MY PERSONAL  INFORMATION </h1>
+    <h2 class="form-cell-sub-title" > (Information of Subscriber) </h2>
+
+
+    <div class="form-container">
+        <div class="form-cell" >
+            {{ form_row(form.name_of_restaurant) }}
+            {{ form_row(form.first_name) }}
+            {{ form_row(form.family_name) }}
+            {{ form_row(form.address) }}
+              <div>
+                  <label> Telephone (Mobile) </label>
+                  {{ form_widget(form.telephone_1) }}
+                  {{ form_errors(form.telephone_1) }}
+              </div>
+            <div>
+                <label> Telephone (Landline) </label>
+                {{ form_widget(form.telephone_2) }}
+                {{ form_errors(form.telephone_2) }}
+            </div>
+            {{ form_row(form.email) }}
+        </div>
+    </div>
+
+    <div>
+
+        {{ form_row(form.save) }}
+
+    </div>
+
+
+    {{ form_end(form) }}
+
+</div>

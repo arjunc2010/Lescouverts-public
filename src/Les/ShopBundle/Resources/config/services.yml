@@ -1,0 +1,7 @@
+parameters:
+#    les_shop.example.class: Les\ShopBundle\Example
+
+services:
+#    les_shop.example:
+#        class: %les_shop.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,214 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/resto-account.css') }}" type="text/css" />
+            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/support-files/css/bootstrap.css')}}"  />
+
+        {% endblock %}
+
+
+
+		{% block body %}
+           <style>
+               .img-modify{
+                   cursor:pointer;
+               }
+           </style>
+            <div>
+                <div class="e-list-container">
+            {% set i = 0 %}
+              {% for event in events %}
+                                    <div class="e-list-cell" u="{{ event.id }}" target="{{ i }}">
+                                        <div class="e-list-cell-left">
+                                            <span class="e-list-cell-data-name" id="title-{{ i }}"> {{ event.name }} </span><br>
+                                            <span class="e-list-cell-data-event" id="date-{{ i }}"> <strong> {{ event.date|date('m-d-Y') }} </strong> </span>
+                                            <span class="e-list-cell-data-event" > From
+                                                                                    <span id="from-{{ i }}">{{ event.start|date('H:m') }}</span>
+                                                                                   till
+                                                                                    <span id="till-{{ i }}">{{ event.end|date('H:m') }}</span>
+                                            </span>
+
+                                            <br>
+                                            <div class="e-list-cell-data-description" id="description-{{ i }}"> {{ event.description }}  </div>
+                                        </div>
+                                        <div class="e-list-cell-right">
+                                            <img class="img-close" src="{{ asset('bundles/LesCouverts/images/close.png') }}" />
+                                            <img class="img-modify" src="{{ asset('bundles/LesCouverts/images/modify.png') }}" />
+
+                                            {%  if event.imgPath != "null" %}
+                                                <a href="{{ asset(event.imgPath) }}" target="_blank">
+                                                      <img class="img-exist" src="{{ asset('bundles/LesCouverts/images/exist.png') }}" />
+                                                </a>
+                                            {% endif %}
+
+                                                {%  if event.imgPath != "null" %}
+                                                    <form action="{{ path('restaurant_my_events') }}" method="post">
+                                                        <input type="hidden" name="id" value="{{ event.id }}">
+                                                        <input type="submit" name="modify" value="Modify Menu" />
+                                                    </form>
+                                                {% else %}
+                                                    <form>
+                                                      <input type="submit" name="upload" value="Upload Menu" />
+                                                    </form>
+                                                {% endif %}
+                                        </div>
+                                    </div>
+                  {% set i = i + 1 %}
+              {% endfor %}
+                </div>
+            </div>
+
+
+            <!-- Modal Edit Text -->
+            <div id="myModal" class="modal hide fade" target="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3 id="myModalLabel">Update Entry</h3>
+                </div>
+                <div class="modal-body" id="form-container">
+                    <div>
+                        <input type="text" id="form-name" name="form[name]" required="required" placeholder="Name">
+                    </div>
+                    <div>
+                        <input type="date" id="form-date" name="form[date]" required="required" placeholder="Date">
+                    </div>
+                    <div>
+                        <input type="text" id="form-from" name="form[from]" required="required">
+                    </div>
+                    <div>
+                        <input type="text" id="form-till" name="form[till]" required="required">
+                    </div>
+                    <div>
+                        <input type="text" id="form-description" name="form[description]" required="required" placeholder>
+                   </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button id="form-save" class="btn btn-primary">Save</button>
+                </div>
+                <div id="form-info" target="" row="" ></div>
+            </div>
+
+
+        {#{% if ifModify.state == true %}#}
+            <!-- Modal Upload File -->
+            <div id="myModalFile" class="modal hide fade" target="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3 id="myModalLabel">Upload File</h3>
+                </div>
+                <div class="modal-body" id="form-container">
+                    <form action="{{ path('restaurant_my_events') }}" method="post">
+                        <input name="file" type="file" />
+                        <input id="form-save-file" class="btn btn-primary" type="submit"  value="upload"/>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+
+                </div>
+                <div id="form-info" target="" row="" ></div>
+            </div>
+        {#{% endif %}#}
+
+            <script src="{{ asset('bundles/LesCouverts/js/jquery-2.1.1.min.js') }}" ></script>
+            <script src="{{ asset('bundles/support-files/js/bootstrap.min.js')}}" > </script>
+            <script>
+
+                $('.img-modify').click(function(){
+                    var parent = $(this).parent().parent();
+                    var target = parent.attr('target');
+                    var title = $('#title-'+target);
+                    var date = $('#date-'+target);
+                    var from = $('#from-'+target);
+                    var till = $('#till-'+target);
+                    var description = $('#description-'+target);
+                    $('#form-name').val( title.text() );
+                        var dateTime = new Date(date.text());
+                        var curr_date = ("0" + dateTime.getDate()).slice(-2);;
+                        var curr_month = ("0" + (dateTime.getMonth() + 1)).slice(-2);
+                        var curr_year = dateTime.getFullYear();
+                    $('#form-date').val( curr_year + "-" + curr_month + "-" + curr_date );
+                    $('#form-from').val( from.text() );
+                    $('#form-till').val( till.text() );
+                    $('#form-description').val( description.text() );
+                    $('#form-info').attr({
+                        'target': parent.attr('target'),
+                        'row':parent.attr('u')});
+                    $('#myModal').modal({
+                        show: true
+                    });
+                    console.log(target + title.text() + date.text() + from.text() + till.text() +description.text() );
+                });
+
+                $('#form-save').click(function(){
+                    $('#myModal').modal('hide');
+                    var parent = $(this).parent().parent();
+                    var target = parent.attr('target');
+                    var title = $('#title-'+target);
+                    var id = $('#form-info').attr('row');
+                    var date = $('#date-'+target);
+                    var dateTime = new Date(date.text());
+                    var curr_date = ("0" + dateTime.getDate()).slice(-2);;
+                    var curr_month = ("0" + (dateTime.getMonth() + 1)).slice(-2);
+                    var curr_year = dateTime.getFullYear();
+                    var from = $('#from-'+target);
+                    var till = $('#till-'+target);
+                    var description = $('#description-'+target);
+                    console.log(target + title.text() + date.text() + from.text() + till.text() +description.text() );
+
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ path('restaurant_my_events') }}",
+                        data: {
+                            action: 'update',
+                            id: id,
+                            title: title.text(),
+                            date: curr_year + "-" + curr_month + "-" + curr_date ,
+                            from: from.text(),
+                            till: till.text(),
+                            description: description.text()
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            console.log( response );
+
+                        }
+                    });
+
+                });
+
+                $('.img-close').click(function(){
+                    console.log('start');
+                    var parent = $(this).parent().parent();
+                    var target = parent.attr('target');
+                    var id = parent.attr('u');
+                    var title = $('#title-'+target);
+                    console.log(title.length + '#title-'+target);
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ path('restaurant_my_events') }}",
+                        data: {
+                            action: 'delete',
+                            id: id
+                        },
+                        dataType:'json',
+                        success: function(response){
+                            console.log(response);
+                            parent.slideUp();
+                        }
+                    });
+                    console.log('end');
+                });
+
+                $('#myModalFile').modal({
+                    show: true
+                });
+
+            </script>
+        {% endblock %}

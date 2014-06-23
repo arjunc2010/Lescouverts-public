@@ -1,0 +1,64 @@
+
+{# app/Resources/views/layout.html.twig #}
+
+
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title> {% block title %} lescouverts {% endblock %} </title>
+  {% block stylesheets %}
+  <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/frame-design.css') }}" type="text/css" />
+  {% endblock %}
+
+ </head>
+
+  <body>
+
+
+      <div id="homepageBody">
+        <div id="lescouverts-img-container">
+
+                  <a href="{{ path('lescouverts_homepage') }}">
+                        <img id="img-lescouverts" src="{{ asset('bundles/LesCouverts/images/logo.png') }}" />
+                  </a>
+
+                {#<a href="#">#}
+                    {#<img id="img-power" src="{{ asset('bundles/LesCouverts/images/PowerIcon.gif') }}" />#}
+                {#</a>#}
+
+             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <a href="{{ path('fos_user_security_logout') }}">
+                    <img id="img-power" src="{{ asset('bundles/LesCouverts/images/PowerIcon.gif') }}" />
+                </a>
+            {% else %}
+
+                <a href="{{ path('fos_user_security_login') }}">
+                    <img id="img-power" src="{{ asset('bundles/LesCouverts/images/PowerIcon.gif') }}" />
+                </a>
+
+
+           {% endif %}
+
+        </div>
+
+                  {% block body %}
+                  {% endblock %}
+           
+
+            <div id="footer-container">
+
+                <a href="{{ path('lescouverts_homepage') }}">
+                  <div class="footer-button"> <span class="footer-text" > Home      </span>     </div>
+                </a>
+                <div class="footer-button"> <span class="footer-text" > Terms of Service </span>      </div>
+                <div class="footer-button"> <span class="footer-text" > Privacy Guideline </span>   </div>
+                <div class="footer-button" style="border-right-style: none;"> <span class="footer-text" > contact us     </span>    </div>
+
+            {#</div>#}
+
+        </div>
+
+    </body>
+
+

@@ -1,0 +1,141 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/lescouverts/css/user-perspective.css') }}" type="text/css" />
+            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/support-files/css/bootstrap.css')}}"  />
+
+        {% endblock %}
+
+
+		{% block body %}
+
+            {% include 'LesCouvertsBundle:Party:Blocks/partyForm.html.twig' %}
+
+            <div id="main-list-container">
+
+                {% set i = 1 %}
+                {% for party in parties %}
+                                <div class="p-list-container" >
+                                    <div class="p-list-cell">
+                                        <div class="p-list-cell-left">
+                                            <span class="p-list-cell-data-name" > {{ party.restaurantName }} </span><br>
+                                            <span class="p-list-cell-data-event" > <strong> {{ party.name }} </strong> </span>
+                                            <span class="p-list-cell-data-event" > {{ party.date|date('m-d-Y') }} </span>
+                                            <span class="p-list-cell-data-event" > From {{ party.start|date('H:m') }} till {{ party.end|date('H:m') }} </span>
+                                            <br>
+                                            <div class="p-list-cell-data-description" > {{ party.description }} </div>
+                                        </div>
+                                        <div class="p-list-cell-right">
+                                             {% if party.imgPath != "null" %}
+                                                <a href="{{ asset(party.imgPath) }}" target="_blank">
+                                                  <img src="{{ asset('bundles/LesCouverts/images/menu_pdf.png') }}" />
+                                                </a>
+                                            {% endif %}
+                                            <div  u="{{ party.id }}" target="{{ i }}" >
+                                                <button class="reserve"> Reserve </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    {% set i = i + 1 %}
+                {% endfor %}
+
+
+            </div>
+
+            <div id="myModal" class="modal hide fade" target="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h3 id="myModalLabel">Reservation</h3>
+                </div>
+                <div class="modal-body" id="form-container">
+                    <div>
+                        <input type="text" id="form-first-name" name="form[first-name]" required="required" placeholder="First Name">
+                    </div>
+                    <div>
+                        <input type="text" id="form-last-name" name="form[last-name]" required="required" placeholder="Last Name">
+                    </div>
+                    <div>
+                        <input type="text" id="form-date" name="form[date]" required="required" placeholder="Date">
+                    </div>
+                    <div>
+                        <input type="number" id="form-number" name="form[number]" required="required" placeholder="Number of People">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button id="form-save" class="btn btn-primary">Save</button>
+                </div>
+                <div id="form-info" target="" row="" ></div>
+            </div>
+
+
+
+
+            <script src="{{ asset('bundles/support-files/js/bootstrap.min.js')}}" > </script>
+            <script>
+                $(function() {
+                    $( "#form-date" ).datepicker({
+                        defaultDate: "+1w",
+                        changeMonth: true,
+                        numberOfMonths: 3,
+                        onClose: function( selectedDate ) {
+                            $( "#to" ).datepicker( "option", "minDate", selectedDate );
+                        }
+                    });
+
+                });
+
+                $('.reserve').click(function(){
+                    $('#myModal').modal({
+                        show: true
+                    });
+
+                    var parent = $(this).parent();
+                    var id = parent.attr('u');
+                    var target = parent.attr('target');
+                    $('#myModal').attr('u', id );
+                    console.log( id + " " + target);
+                });
+
+                $('#form-save').click(function(){
+                    $('#myModal').modal('hide');
+                    var id = $('#myModal').attr('u');
+                    var firstName = $('#form-first-name').val();
+                    var lastName = $('#form-last-name').val();
+                    var date = $('#form-date').val();
+                    var number = $('#form-number').val();
+
+                    console.log( id + " " +firstName + " " + lastName + " " + date + " " + number );
+
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ path('party_event_request')   }}",
+                        data: {
+                            action: 'reserve',
+                            id: id,
+                            firstName: firstName,
+                            lastName: lastName,
+                            date: date,
+                            number: number
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            console.log('success');
+                            console.log( response );
+
+                        }
+
+                    });
+                    console.log('-- FIN -- ');
+
+                });
+
+
+            </script>
+        {% endblock %}

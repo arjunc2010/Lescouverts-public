@@ -1,0 +1,110 @@
+
+{% extends "::layout.html.twig" %}
+
+
+
+     	{% block stylesheets %}
+            {{ parent( )}}
+            <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/resto-account.css') }}" type="text/css" />
+        {% endblock %}
+
+		{% block body %}
+    <style>
+     #container-upload{
+         position: relative;
+     }
+       #button-update{
+          width:134px;
+          border-color: rgb(200,191,231);
+          background-color: rgb(200,191,231);
+          height: 45px;
+          margin-top: 10px;
+          margin-left: 20%;
+          font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+          font-weight: bold;
+          font-size: 15px;
+          color: white;
+          cursor: pointer;
+       }
+
+            #form-upload{
+                width:350px;
+                height: 100px;
+                /*border-style: solid;*/
+                margin-left:22%;
+                position: absolute;
+                top: 50px;
+                /*bottom:106px;*/
+                z-index: 150;
+                background-color:white;
+                box-shadow: 0px 0px 5px grey;
+                display: none;
+            }
+    </style>
+
+     <div id="container-upload">
+        <div id="button-update">
+           Upload New Menu
+        </div>
+             <div id="form-upload">
+                {% include 'LesRestaurantBundle:Admin:Menu/Blocks/menuUploadForm.html.twig' %}
+             </div>
+     </div>
+
+
+
+<div>
+
+          {% for image in images %}
+                <div class="menu-container">
+                    <img class="img-type" src="{{ asset('bundles/LesCouverts/images/menu_jpg.png') }}" />
+                    <img class="img-close" u="{{ asset(image) }}" src="{{ asset('bundles/LesCouverts/images/close.png') }}" />
+                    <span> Lunch Menu  </span>
+                    {#<button class="button-update" u="{{ asset(image) }}"> Update </button>#}
+                    <a href="{{ asset(image) }}" target="_blank">
+                        <button class="button-download"> Download </button>
+                    </a>
+              </div>
+          {% endfor  %}
+
+
+
+</div>
+
+
+
+
+
+
+            <script src="{{ asset('bundles/LesCouverts/js/jquery-2.1.1.min.js') }}" ></script>
+            <script>
+                $('#button-update').click(function(){
+                        $('#form-upload').slideToggle();
+                });
+
+                 $('.img-close').click(function(){
+                     var status;
+                     var parent = $(this).parent();
+                     var filepath = $(this).attr('u');
+                     $.ajax({
+                         type: "POST",
+                         url: "{{ path('restaurant_my_menus') }}",
+                         data: {
+                             action: 'delete',
+                             path: filepath
+                         },
+                         dataType: "json",
+                         success: function(response) {
+                             if( response.status == true){
+                                    alert('File has been deleted');
+                               parent.slideUp();
+                             }else{
+                                 alert('Error in deleting file');
+                             }
+                             console.log( response );
+                         }
+                     });
+                 });
+
+            </script>
+        {% endblock %}

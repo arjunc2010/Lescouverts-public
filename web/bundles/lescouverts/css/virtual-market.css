@@ -1,0 +1,149 @@
+
+ 		#container{
+ 			width: 80%;
+ 			height: 1000px;
+ 			aborder-style: dashed;
+ 			position: relative;
+ 			left: 10%;
+ 		}
+
+
+	 		  .v-list-container{
+	 		  	aborder-style: dashed;
+	 		  	text-align: center;
+	 		  	margin-top: 30px;
+	 		  	display: inline-block;
+	 		  }
+
+		 			.v-list-cell{
+		 				width: 1010px;
+		 				height: 214px;
+		 				border-bottom-style: groove;
+		 				border-color: rgb(237,237,237);
+		 			}
+
+                        .v-list-cell:hover{
+                            box-shadow: 5px 5px 5px black;
+                        }
+
+			 			.v-list-cell-left{
+			 				width:223px;
+			 				height: 150px;
+			 				aborder-style: dashed;
+			 				float: left;
+			 				margin-left: 70px;
+                            position: relative;
+                            top:10px;
+			 			}
+
+			 			.v-list-cell-center{
+			 				width: 46%;
+			 				height: 100px;
+			 				aborder-style:dashed;
+			 				float: left;
+			 				margin-left: 50px;
+			 			}
+
+			 			.v-list-cell-right{
+			 				width:200px;
+			 				height: 100px;
+			 				aborder-style: dashed;
+			 				float: left;
+			 				position: relative;
+			 				top: 20px;
+			 			}
+
+			 				.v-list-cell-discount{
+			 					width: 82%;
+			 					height: 105%;
+			 				}
+
+					 				.v-list-cell-center .product-label{
+					 					color: rgb(191,191,191);
+					 					font-size: 18px;
+					 				}
+
+					 				.v-list-cell-center .product-value{
+					 					color: rgb(127,127,127);
+					 					font-size: 20px;
+					 				}
+
+					 				.v-list-cell-right .product-discount{
+					 					color: white;
+					 					font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+					 					afont-weight: bold;
+					 					font-size: 20px;
+					 					position: relative;
+					 					top: 20%;
+					 					text-align: center;
+					 				}
+
+
+
+	
+	 		  #v-focus-container{
+	 		  	width: 100%;
+	 		  	height: 200px;
+	 		  	aborder-style: dashed;
+	 		  	text-align: center;
+	 		  	margin-top: 30px;
+	 		  	display: inline-block;
+
+
+	 		  }
+
+	 		  		.v-focus-photo{
+	 		  			display: inline-block;
+	 		  			height: 300px;
+		 				aborder-style: dashed;
+	 		  		}
+
+
+
+			 			.v-focus-details{
+			 				aborder-style:dashed;
+			 				display: inline-block;
+			 				margin-left: 50px;
+			 				margin-top: 60px;
+		 					font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+			 			}
+
+			 			.v-focus-container-discount{
+			 				width:200px;
+			 				height: 100px;
+			 				aborder-style: dashed;
+			 				display: inline-block;
+			 				position: relative;
+			 				top: -590px;
+			 				left:54px;
+			 			}
+
+			 				.v-focus-discount{
+			 					width: 82%;
+			 					height: 105%;
+			 				}
+
+					 				.v-focus-details .product-label{
+					 					color: rgb(191,191,191);
+					 					font-size: 18px;
+					 				}
+
+					 				.v-focus-details .product-value{
+					 					color: rgb(127,127,127);
+					 					font-size: 20px;
+					 				}
+
+					 				.v-focus-discount .product-discount{
+					 					color: white;
+					 					font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+					 					afont-weight: bold;
+					 					font-size: 20px;
+					 					position: relative;
+					 					top: 20%;
+					 				}
+
+					 				.product-value p{
+					 					font-size: 15px;
+					 				}
+
+

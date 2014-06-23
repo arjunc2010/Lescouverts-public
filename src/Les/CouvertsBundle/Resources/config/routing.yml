@@ -1,0 +1,59 @@
+#  ---------------  LANDING PAGE --------------
+lescouverts_homepage:
+    pattern:  /
+    defaults: { _controller: LesCouvertsBundle:Couverts:index }
+
+#  ---------------  BOOKING--------------
+booking_a_table:
+    pattern:  /booking
+    defaults:  { _controller: LesCouvertsBundle:Couverts:booking }
+
+#  ---------------  PARTY CALENDAR --------------
+party_calendar:
+    pattern:  /party_calendar
+    defaults:  { _controller: LesCouvertsBundle:Party:index }
+
+party_event_request:
+    pattern:  /party_calendar_event_request
+    defaults:  { _controller: LesCouvertsBundle:Party:event }
+
+
+#  ---------------  FEATURED --------------
+featured:
+    pattern:  /featured
+    defaults:  { _controller: LesCouvertsBundle:Couverts:featured }
+
+#  ---------------  RESTO HOMEPAGE --------------
+resto_homepage:
+    pattern:  /booking/resto_homepage/{id}
+    defaults:  { _controller: LesRestaurantBundle:Restaurant:homepage}
+
+
+#  ---------------  RESTO HOMEPAGE OPTIONS --------------
+menus:
+    pattern:  /booking/resto_homepage/menus/{id}
+    defaults: { _controller: LesRestaurantBundle:Restaurant:menus}
+
+events:
+    pattern:  /booking/resto_homepage/events/{id}
+    defaults: { _controller: LesRestaurantBundle:Restaurant:events}
+
+news:
+    pattern:  /booking/resto_homepage/news/{id}
+    defaults: { _controller: LesRestaurantBundle:Restaurant:news}
+
+similar:
+    pattern:  /booking/resto_homepage/similar/{id}
+    defaults: { _controller: LesRestaurantBundle:Restaurant:similar}
+
+recommend:
+    pattern:  /booking/resto_homepage/recommend/{id}
+    defaults: { _controller: LesRestaurantBundle:Restaurant:recommend}
+
+rating:
+    pattern:  /booking/resto_homepage/rating/{id}
+    defaults: { _controller: LesRestaurantBundle:Restaurant:rating}
+
+feedback:
+    pattern:  /booking/resto_homepage/feedback/{id}
+    defaults: { _controller: LesRestaurantBundle:Restaurant:feedback}

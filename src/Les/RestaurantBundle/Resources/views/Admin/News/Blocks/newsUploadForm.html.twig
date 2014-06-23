@@ -1,0 +1,38 @@
+<style>
+
+    input[type='file']{
+        height: 33px;
+        width: 300px;
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+        font-weight: bold;
+        font-size: 15px;
+        color: white;
+        border-color: rgb(116,132,255);
+        background-color: rgb(116,132,255);
+        border-style: double;
+        border-radius: 5px;
+        margin-top:10px;
+    }
+
+    button[type='submit']{
+        height: 33px;
+        width: 94px;
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+        font-weight: bold;
+        font-size: 15px;
+        color: white;
+        border-style: double;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top:10px;
+        border-color: rgb(200,191,231);
+        background-color: rgb(200,191,231);
+    }
+
+</style>
+
+
+    {{ form_start(form) }}
+            {{ form_widget(form.file) }}
+            {{ form_widget(form.upload) }}
+    {{ form_end(form) }}

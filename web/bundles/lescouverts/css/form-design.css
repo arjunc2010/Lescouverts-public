@@ -1,0 +1,49 @@
+
+ input[type='text'] , input[type='password'] , input[type='email']{
+	height: 48px;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	border-color: #D8D8D8;
+	border-style: double;
+	margin-top: 20px;
+	margin-left: 20px;
+ }
+
+ label{
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+ }
+
+ input[type='submit']{
+		height: 39px;
+		width: 150px;
+		font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+		font-weight: bold;
+		font-size: 15px;
+		color: white;
+		border-color: rgb(116,132,255);
+		background-color: rgb(116,132,255);
+		border-style: double;
+		border-radius: 5px;
+	margin-top: 20px;
+	margin-left: 20px;
+
+}
+
+ #button-register{
+     font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+     color: white;
+     height: 32px;
+     width: 130px;
+     font-weight: bold;
+     border-style: double;
+     border-radius: 5px;
+     background-color:purple;
+     border-color: purple;
+     margin-top: 10px;
+    margin-left: 154px;
+ }
+
+        a{
+            height: 68px;
+            font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+            border-color: #D8D8D8;
+        }

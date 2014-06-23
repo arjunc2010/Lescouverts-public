@@ -1,0 +1,7 @@
+parameters:
+#    les_data.example.class: Les\DataBundle\Example
+
+services:
+#    les_data.example:
+#        class: %les_data.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

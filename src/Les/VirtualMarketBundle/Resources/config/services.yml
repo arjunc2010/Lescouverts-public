@@ -1,0 +1,7 @@
+parameters:
+#    les_virtual_market.example.class: Les\VirtualMarketBundle\Example
+
+services:
+#    les_virtual_market.example:
+#        class: %les_virtual_market.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

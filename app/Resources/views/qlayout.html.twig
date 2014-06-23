@@ -1,0 +1,144 @@
+
+{# app/Resources/views/layout.html.twig #}
+
+
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title> {% block title %} lescouverts {% endblock %} </title>
+  {% block stylesheets %}
+  <link rel="stylesheet" href= "{{ asset('bundles/LesCouverts/css/frame-design.css') }}" type="text/css" />
+  {% endblock %}
+
+ </head>
+
+
+ <style type="text/css">
+
+     /* Sticky footer styles
+     -------------------------------------------------- */
+
+     html,
+     body {
+         height: 100%;
+         /* The html and body elements cannot have any padding or margin. */
+     }
+
+     /* Wrapper for page content to push down footer */
+     #wrap {
+         min-height: 100%;
+         height: auto !important;
+         height: 100%;
+         /* Negative indent footer by it's height */
+         margin: 0 auto -60px;
+     }
+
+     /* Set the fixed height of the footer here */
+     #push,
+     #footer {
+         height: 60px;
+     }
+     #footer {
+         background-color: #f5f5f5;
+     }
+
+     /* Lastly, apply responsive CSS fixes as necessary */
+     @media (max-width: 767px) {
+         #footer {
+             margin-left: -20px;
+             margin-right: -20px;
+             padding-left: 20px;
+             padding-right: 20px;
+         }
+     }
+
+
+
+     /* Custom page CSS
+     -------------------------------------------------- */
+     /* Not required for template or sticky footer method. */
+
+     .body-container {
+         width: auto;
+         max-width: 680px;
+     }
+     .body-container .credit {
+         margin: 20px 0;
+     }
+
+ </style>
+
+  <body>
+
+  <!-- Part 1: Wrap all page content here -->
+  <div id="wrap">
+
+
+      <!-- Begin page content -->
+      <div class="body-container">
+
+
+      <div id="homepageBody">
+        <div id="lescouverts-img-container">
+
+                  <a href="{{ path('lescouverts_homepage') }}">
+                        <img id="img-lescouverts" src="{{ asset('bundles/LesCouverts/images/logo.png') }}" />
+                  </a>
+
+                {#<a href="#">#}
+                    {#<img id="img-power" src="{{ asset('bundles/LesCouverts/images/PowerIcon.gif') }}" />#}
+                {#</a>#}
+
+             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <a href="{{ path('fos_user_security_logout') }}">
+                    <img id="img-power" src="{{ asset('bundles/LesCouverts/images/PowerIcon.gif') }}" />
+                </a>
+            {% else %}
+
+                <a href="{{ path('fos_user_security_login') }}">
+                    <img id="img-power" src="{{ asset('bundles/LesCouverts/images/PowerIcon.gif') }}" />
+                </a>
+
+
+                <a href="{{ path('booking_a_table') }}">
+                    <img id="img-power" src="{{ asset('bundles/LesCouverts/images/PowerIcon.gif') }}" />
+                </a>
+
+           {% endif %}
+
+        </div>
+
+                  {% block body %}
+                  {% endblock %}
+           
+
+            {#<div id="footer-container">#}
+                       {#<a href="{{ path('lescouverts_homepage') }}">#}
+                    {#<div class="footer-button"> <span class="footer-text" > Home      </span>     </div>#}
+                {#</a>#}
+                {#<div class="footer-button"> <span class="footer-text" > Terms of Service </span>      </div>#}
+                {#<div class="footer-button"> <span class="footer-text" > Privacy Guideline </span>   </div>#}
+                {#<div class="footer-button" style="border-right-style: none;"> <span class="footer-text" > contact us     </span>    </div>#}
+
+              {#</div>#}
+
+             {#</div>#}
+
+
+
+              </div>
+
+              <div id="push"></div>
+          </div>
+
+
+          <div id="footer">
+              <div class="container">
+                  <p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
+              </div>
+          </div>
+
+  </body>
+
+

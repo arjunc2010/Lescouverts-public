@@ -1,0 +1,166 @@
+
+ 		#container{
+ 			width:80%;
+ 			min-width: 1000px;
+ 			aborder-style: dashed;
+ 			position: relative;
+ 			left: 10%;
+ 		}
+ 
+
+	 		  #h-container{
+	 		  	aborder-style: dashed;
+	 		  	text-align: center;
+	 		  	margin-top: 30px;
+
+	 		  }
+
+	 		  		#h-gallery{
+	 		  			aborder-style: dashed;
+						width:100%;
+						float:left;
+						position:relative;
+	 		  		}
+	 		  				#h-gallery img{
+	 		  					max-height: 80%;
+	 		  				}
+
+
+	 		  				#h-gallery input[type='submit'][name='reserve']{
+	 		  					height: 60px;
+	 		  					width: 320px;
+								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+								font-weight: bold;
+								font-size: 18px;
+								color: white;
+								border-color: rgb(116,132,255);
+								background-color: rgb(116,132,255);
+								border-style: double;
+								border-radius: 5px;
+								position: absolute;
+								bottom:0px;
+								right:0px;
+	 		  				}
+
+	 		  		.h-sub-container{
+	 		  			width: 90%;
+	 		  			position: relative;
+	 		  			display:inline-block;
+		 				border-bottom-style: groove;
+		 					border-color: rgb(237,237,237);	 		  			
+		 					margin-top: 15px;
+		 					margin-bottom: 0px;
+	 		  		}
+
+							.h-list-cell{
+					 				width: 90%;
+					 				border-color: rgb(237,237,237);
+					 				display: inline-block;
+					 		}
+
+					 					.h-list-cell-data-name{
+											font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+					 						color: rgb(127,127,127);
+					 						font-size: 22px;
+					 					}
+
+					 					.h-list-cell-data-address{
+											font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+					 						color: rgb(165,165,165);
+					 						font-size: 16.5px;
+                                            margin-top: 5px;
+                                            display: inline-block;
+					 					}
+                                        .h-list-cell-data-address:first-child{
+                                        }
+
+					 					.h-list-cell-data-type{
+											font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+					 						color: rgb(165,165,165);
+
+					 					}
+
+					 					.h-list-cell-data-menu{
+											font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+					 						color: rgb(127,127,127);
+					 						font-size: 18px;
+
+					 					}
+
+					 					.h-list-cell-data-menu-content{
+											font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+					 						color: rgb(127,127,127);
+					 						font-size: 16px;
+					 						margin-left: 10px;
+					 					}
+					 					
+					 					.h-list-cell p{
+											font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+					 						color: rgb(165,165,165);
+						 					font-size: 15px;
+					 					}
+					 		 
+					 	.h-block-cell{
+					 		display: inline-block;
+					 		width:22%;
+					 		height: 82%;
+					 		aborder-style: dashed;
+
+					 	}	
+					 					.h-block-cell-top{
+					 						position: relative;
+					 						aborder-style: dashed;
+					 						border-color: red;
+					 						width:100%;
+					 						height:80%;
+					 						float: left;
+					 						text-align: center;
+                                            cursor: pointer;
+					 					}
+
+					 							.h-block-cell-top img{
+					 								display: inline-block;
+					 								position: relative;
+					 								top: 15%;
+					 							}
+
+					 					.h-block-cell-bottom{
+					 						aborder-style: dashed;
+					 						border-color: blue;
+					 						width:100%;
+					 						height:20%;
+					 						float: left;
+
+					 					}
+
+					 							.h-block-cell-bottom span{
+					 								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+													font-weight: bold;
+													color: rgb(165,165,165);
+					 							}
+
+					 	.h-comment-container{
+					 		width:60%;
+					 		height: 70px;
+					 		display: inline-block;
+							border-bottom-style: groove;
+		 					border-color: rgb(237,237,237);	 		  			
+		 					margin-top: 25px;
+		 					margin-bottom: 0px;
+                            position: relative;
+					 	}
+
+					 					.h-comment-text{
+
+					 								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+					 								font-weight: bold;
+					 								font-size: 17px;
+													color: rgb(165,165,165);
+					 					}
+
+					 					.h-comment-details{
+					 								font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+													color: rgb(170,180,255);
+													margin-left: 30px;
+					 					}
+
